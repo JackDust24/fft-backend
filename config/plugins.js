@@ -1,4 +1,4 @@
-
+"use strict";
 // For sending and setting up Sengrid emails.
 
 module.exports = ({ env }) => ({

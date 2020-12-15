@@ -18,7 +18,7 @@ module.exports = ({ env }) => ({
         providerOptions: {
           username: 'admin@ffthai.com',
           clientId: env('EMAIL_CLIENT_ID'),
-          privateKey: env('EMAIL_PRIVATE_KEY').replace(/\\n/g, '\n'),
+          privateKey: env('EMAIL_PRIVATE_KEY'),
         },
         settings: {
           defaultFrom: 'admin@ffthai.com',

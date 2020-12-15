@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "promotions",
+  "info": {
+    "name": "Promotions"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Promotion": {
+      "type": "string",
+      "required": true,
+      "minLength": 1,
+      "maxLength": 75
+    },
+    "Subtitle": {
+      "type": "string",
+      "required": true,
+      "minLength": 1,
+      "maxLength": 150
+    },
+    "Details": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 1,
+      "maxLength": 150
+    },
+    "StartDate": {
+      "type": "date",
+      "required": true
+    },
+    "EndDate": {
+      "type": "date"
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "name": "Clients",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "business_name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "businessID": {
+      "type": "uid",
+      "private": false,
+      "targetField": "business_name"
+    },
+    "InternalID": {
+      "type": "string",
+      "private": true,
+      "unique": true
+    },
+    "franchise": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "client_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "business_description": {
+      "type": "richtext"
+    },
+    "client_contact": {
+      "type": "string",
+      "required": true
+    },
+    "client_email": {
+      "type": "email"
+    },
+    "client_phone_number": {
+      "type": "biginteger",
+      "max": "15",
+      "min": "1"
+    },
+    "address": {
+      "type": "text",
+      "required": false
+    },
+    "district": {
+      "type": "text",
+      "required": false
+    },
+    "province": {
+      "type": "text",
+      "required": false
+    },
+    "about_us": {
+      "type": "text"
+    },
+    "main_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "other_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "video_link": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "site_details": {
+      "type": "text"
+    },
+    "opening_times": {
+      "type": "richtext"
+    },
+    "membership_status": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "other_business_links": {
+      "type": "string"
+    },
+    "social_media_fb": {
+      "type": "string"
+    },
+    "social_media_instagram": {
+      "type": "string"
+    },
+    "social_mediaI_twitter": {
+      "type": "string"
+    },
+    "fft_service_marker": {
+      "type": "boolean",
+      "default": true
+    },
+    "fft_english_marker": {
+      "type": "boolean",
+      "default": true
+    },
+    "membership_expiry": {
+      "type": "date"
+    },
+    "promotions_allowed": {
+      "type": "integer",
+      "min": 0,
+      "max": 14
+    },
+    "promotions_purchased": {
+      "type": "integer"
+    },
+    "date_joined": {
+      "type": "email"
+    },
+    "contact_business": {
+      "type": "email"
+    },
+    "discount_info": {
+      "type": "text"
+    },
+    "coordinates": {
+      "type": "json"
+    },
+    "sales_rep": {
+      "type": "string"
+    },
+    "orders": {
+      "collection": "order"
+    },
+    "business_type": {
+      "type": "string"
+    },
+    "setup_by": {
+      "type": "string",
+      "required": true,
+      "default": "unknown"
+    },
+    "business_display_name": {
+      "type": "string"
+    },
+    "business_category": {
+      "type": "string"
+    },
+    "business_sub_category": {
+      "type": "string"
+    },
+    "terms": {
+      "type": "boolean"
+    },
+    "sales_rep_email": {
+      "type": "email"
+    }
+  }
+}

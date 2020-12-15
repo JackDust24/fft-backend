@@ -1,0 +1,46 @@
+{
+  "homepage": "http://JackDust24.github.io/fft",
+  "name": "fft",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "knex": "<0.20.0",
+    "pg": "^8.5.1",
+    "sqlite3": "latest",
+    "strapi": "3.2.5",
+    "strapi-admin": "3.2.5",
+    "strapi-connector-bookshelf": "3.2.5",
+    "strapi-plugin-content-manager": "3.2.5",
+    "strapi-plugin-content-type-builder": "3.2.5",
+    "strapi-plugin-documentation": "^3.2.5",
+    "strapi-plugin-email": "3.2.5",
+    "strapi-plugin-graphql": "^3.2.5",
+    "strapi-plugin-upload": "3.2.5",
+    "strapi-plugin-users-permissions": "3.2.5",
+    "strapi-provider-email-gmail-2lo": "^3.1.5",
+    "strapi-provider-email-sendgrid": "^3.3.4",
+    "strapi-utils": "^3.2.5",
+    "stripe": "^8.125.0"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "5348c519-b9d5-4b9e-9585-7eb2095a152c"
+  },
+  "engines": {
+    "node": ">= 12.x < 13.x",
+    "npm": "6.12.0"
+  },
+  "license": "MIT"
+}

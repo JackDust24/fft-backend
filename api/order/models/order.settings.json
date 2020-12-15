@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "Order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "order_name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "payment_intent_id": {
+      "type": "string"
+    },
+    "lengthOfPackage": {
+      "type": "integer"
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "free_months": {
+      "type": "integer",
+      "default": 0,
+      "max": 12
+    },
+    "tax": {
+      "type": "integer"
+    },
+    "vat": {
+      "type": "integer"
+    },
+    "created_date": {
+      "type": "datetime"
+    },
+    "sales_rep": {
+      "type": "string"
+    },
+    "sales_rep_link": {
+      "plugin": "admin",
+      "model": "user"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "payment_type": {
+      "type": "string"
+    },
+    "order_ID": {
+      "type": "uid",
+      "targetField": "payment_intent_id"
+    },
+    "customplan": {
+      "type": "boolean",
+      "default": false
+    },
+    "package_type": {
+      "type": "string"
+    },
+    "business_name": {
+      "type": "string"
+    },
+    "business_username": {
+      "type": "string"
+    },
+    "order_reference": {
+      "type": "richtext"
+    },
+    "sales_rep_email": {
+      "type": "email"
+    },
+    "user_email": {
+      "type": "email"
+    }
+  }
+}

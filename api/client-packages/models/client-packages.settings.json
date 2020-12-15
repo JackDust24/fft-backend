@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "client_packages",
+  "info": {
+    "name": "ClientPackages"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "order": {
+      "model": "order"
+    },
+    "client": {
+      "model": "clients"
+    },
+    "Start_date": {
+      "type": "date"
+    },
+    "Start_package_date": {
+      "type": "date"
+    },
+    "End_Package_date": {
+      "type": "date"
+    },
+    "Purchase_date": {
+      "type": "date"
+    },
+    "lengthOfPackage": {
+      "type": "integer"
+    }
+  }
+}

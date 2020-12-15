@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_client_sub_clients",
+  "info": {
+    "name": "sub_client",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "client": {
+      "model": "clients"
+    }
+  }
+}

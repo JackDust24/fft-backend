@@ -149,12 +149,11 @@ module.exports = {
 
     // amount: total, // We do this to change satang to proper baht
 
-    let customerID = null;
+    let customerID = '';
 
     console.log("**** customerID - ", customerID);
 
-    try {
-      const createCustomer = await stripe.customers.create({
+    const createCustomer = await stripe.customers.create({
         description: "My First Test Customer (created for API docs)",
         name: customer,
         email: customer_email,
@@ -167,11 +166,8 @@ module.exports = {
       customerID = createCustomer.id;
 
       console.log("Did create customer customerID + ", customerID);
-    } catch (err) {
-      console.log("Cannot create ", createCustomer);
-    }
 
-    try {
+
       const paymentIntent = await stripe.paymentIntents.create({
         amount: total * 100, // We do this to change satang to proper baht
         currency: "THB",
@@ -183,11 +179,7 @@ module.exports = {
       console.log("Created paymentIntent", paymentIntent);
 
       return paymentIntent;
-    } catch (err) {
-     console.log("Cannot create paymentIntent - ", err.raw.message);
-
-      return { error: err.raw.message };
-    }
+    
   },
 
   create: async (ctx) => {

@@ -2,7 +2,6 @@
 
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
-// console.log("Check Stripe ", process.env.STRIPE_KEY)
 
 // const stripe = require("stripe")(
 //   "sk_test_51Hqw5wCaBjHOYXVgV9nyYntnuoK9MuIymfeDiQTinKrX1HARozReDUVokFvp7SiwRe91bPrAjA1PwsHU6d854xFU00FOuQ5OrW"

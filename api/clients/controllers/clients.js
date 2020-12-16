@@ -79,7 +79,6 @@ module.exports = {
             sales_rep_email,
             business_category,
             business_sub_category,
-            businessID,
         }
 
         let userEmail = client_email;
@@ -123,13 +122,14 @@ module.exports = {
         } catch (err) {
           console.log("Problem with email business - ", err);
         }
+    
 
 //         //5
         const entity = await strapi.services.clients.create(entry);
 
-        // return entity
+        return entity
 
-        return sanitizeEntity(entity, { model: strapi.models.clients })
+        // return sanitizeEntity(entity, { model: strapi.models.clients })
 
     }
 

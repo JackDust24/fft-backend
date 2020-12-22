@@ -5,6 +5,11 @@ const stripe = require('stripe')(process.env.STRIPE_KEY);
 const { sanitizeEntity } = require("strapi-utils");
 const path = require("path");
 
+var omise = require('omise')({
+  'secretKey': 'skey_test_5ma9uay5uagsjzgj7b3 ',
+  'omiseVersion': '2015-09-10'
+});
+
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
  * to customize this controller
@@ -160,6 +165,86 @@ module.exports = {
       return paymentIntent;
     
   },
+
+  /*
+  setUpOmise: async (ctx) =>  {
+    console.log("setupOmise called")
+
+    const {
+      nonce
+    } = ctx.request.body;
+
+
+    console.log("Called Omise Backend ", nonce)
+
+    let omiseResponse;
+
+    let tokenParameters = {
+      "city": "New York",
+      "country": "US",
+      "expiration_month": 2,
+      "expiration_year": 2022,
+      "name": "Somchai Prasert",
+      "number": "4242424242424242",
+      "phone_number": "0123456789",
+      "postal_code": 10320,
+      "security_code": 123,
+      "state": "NY",
+      "street1": "476 Fifth Avenue"
+    };
+    
+    omise.charges.create("card",
+                      tokenParameters,
+                      function(statusCode, response) {
+
+                        // response["id"] is token identifier
+                      
+                        console.log("Called Omise check -", response)
+                      });
+
+    // omiseResponse = await omise.charges.create({
+    //   'description': 'Charge for order ID: 888',
+    //   'amount': '100000', // 1,000 Baht
+    //   'currency': 'thb',
+    //   'capture': false,
+    //   'card': nonce
+    // }, function(err, resp) {
+    //   if (resp) {
+    //     console.log("Response 1 - ", resp)
+
+    //     //Success
+    //   } else {
+    //     //Handle failure
+    //     throw resp.failure_code;
+    //   }
+    // });
+
+    console.log("Response 2 - ", omiseResponse)
+    
+    // {
+    //   if (resp.paid) {
+    //     //Success
+    //     console.log("setupOmise paid")
+
+    //   } else {
+    //     //Handle failure
+    //     console.log("setupOmise failed")
+
+    //     throw resp.failure_code;
+    //   }
+    // });
+
+    // try {
+    //   paymentInfo = await stripe.paymentIntents.retrieve(paymentIntent.id);
+    //   if (paymentInfo.status !== "succeeded") {
+    //     throw { message: "You still have to pay" };
+    //   }
+    // } catch (err) {
+    //   ctx.response.status = 402;
+    //   return { error: err.message };
+    // }
+
+  }, */
 
   create: async (ctx) => {
     const {

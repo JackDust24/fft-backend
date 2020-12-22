@@ -15,6 +15,7 @@
   "devDependencies": {},
   "dependencies": {
     "knex": "<0.20.0",
+    "omise": "^0.8.4",
     "pg": "^8.5.1",
     "sqlite3": "latest",
     "strapi": "3.2.5",

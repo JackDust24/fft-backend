@@ -2,11 +2,6 @@
 
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
-
-// const stripe = require("stripe")(
-//   "sk_test_51Hqw5wCaBjHOYXVgV9nyYntnuoK9MuIymfeDiQTinKrX1HARozReDUVokFvp7SiwRe91bPrAjA1PwsHU6d854xFU00FOuQ5OrW"
-// );
-
 const { sanitizeEntity } = require("strapi-utils");
 const path = require("path");
 
@@ -21,18 +16,11 @@ module.exports = {
     let validatedCart = [];
     let receiptCart = [];
 
-    // Through ctx we receive the body
-    //We will receive the products and the qty
+    // Set up what we will be sengding to Stripe
     const { cart } = ctx.request.body;
-
-    console.log("***** ", cart);
-
     let customPlan = cart["0"].customplan;
-
     let customer = "";
-
     let customer_email = "";
-
     let sales_rep_email = "";
 
     console.log("***** Did Test go through? Customer? ", cart["0"].customer);
@@ -45,6 +33,7 @@ module.exports = {
       cart["0"].sales_rep_email
     );
 
+    // Set up in case, none of this info was received
     if (cart["0"].customer === undefined) {
       customer = "No Customer Name went through";
     } else {
@@ -91,6 +80,7 @@ module.exports = {
 
             receiptCart.push({
               id: packages.id,
+              name: packages.name,
               price: packages.price,
               lengthOfPackage: packages.lengthOfPackage,
               customer: customer,
@@ -99,8 +89,6 @@ module.exports = {
           }
         } else {
           // For not a custom plan
-          console.log("customn Plan" + cart);
-
           console.log("validatedPackage", validatedPackage);
           // Check first it is validated - then check the price with Codes
 
@@ -114,25 +102,22 @@ module.exports = {
               console.log(
                 "customn lengthOfPackage " + packages.lengthOfPackage
               );
-              console.log(
-                "validatedCustomPage lengthOfPackage " +
-                  packages.lengthOfPackage
-              );
 
               validatedCart.push(validatedCustomPage);
 
               receiptCart.push({
                 id: packages.id,
+                name: packages.name,
                 price: packages.price,
                 lengthOfPackage: packages.lengthOfPackage,
                 customer: customer,
+                sales_rep_email: sales_rep_email
               });
             }
 
             return validatedCustomPage;
           }
 
-          // As we will know if it is a real order then
         }
 
         return validatedPackage;
@@ -140,17 +125,13 @@ module.exports = {
     );
 
     console.log("validatedCart - ", validatedCart);
+
     //Use the data from strapi to calculate the price of each product
     //Basically calculate the total that way
-
     total = strapi.config.functions.cart.cartTotal(validatedCart);
     console.log("total - ", total);
 
-    // amount: total, // We do this to change satang to proper baht
-
     let customerID = '';
-
-    console.log("**** customerID - ", customerID);
 
     const createCustomer = await stripe.customers.create({
         description: "My First Test Customer (created for API docs)",
@@ -165,7 +146,6 @@ module.exports = {
       customerID = createCustomer.id;
 
       console.log("Did create customer customerID + ", customerID);
-
 
       const paymentIntent = await stripe.paymentIntents.create({
         amount: total * 100, // We do this to change satang to proper baht
@@ -236,6 +216,9 @@ module.exports = {
 
     console.log("order.create cart - ", cart["0"].price);
 
+    console.log("Check cart name - ", cart["0"].name);
+
+
     let price = 0;
     let packagesChosen = [];
     let sanitizedCart = [];
@@ -243,7 +226,7 @@ module.exports = {
     let tax = 0;
     let vat = 0;
     let customplan = false;
-    let package_type = "";
+    let package_type = cart["0"].name;
     let free_months = 0;
 
     // Use the business_username from the user name field
@@ -291,7 +274,7 @@ module.exports = {
             customplan = packages.customplan;
             free_months = packages.free_months;
             // These use different settings here
-            package_type = packages.code;
+            // package_type = packages.code;
           }
 
           packagesChosen.push(foundPackage);
@@ -380,6 +363,7 @@ module.exports = {
       created_date,
       order_reference,
       business_name,
+      package_type,
     };
 
     //5

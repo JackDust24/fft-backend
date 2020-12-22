@@ -23,7 +23,8 @@ module.exports = {
             address,
             coordinates,
             setup_by,
-            client_id
+            client_id,
+            discount_info
         } = ctx.request.body
 
        
@@ -40,6 +41,7 @@ module.exports = {
         console.log("clients.create cart ", business_category)
         console.log("clients.create cart ", business_sub_category)
         console.log("clients.create cart ", terms)
+        console.log("clients.create cart ", discount_info)
 
         console.log("clients.create ctx.request.body ", ctx.request.body)
 
@@ -57,8 +59,8 @@ module.exports = {
             return output;
           };
       
-          const businessID = `FFT${randomString(25)}`;
-          console.log("******** Check bus ID - " + businessID);
+          const internalID = `FFT${randomString(25)}`;
+          console.log("******** Check bus ID - " + internalID);
 
         // DO a double check here:
         const client_user = client_id
@@ -79,6 +81,8 @@ module.exports = {
             sales_rep_email,
             business_category,
             business_sub_category,
+            discount_info,
+            internalID
         }
 
         let userEmail = client_email;
@@ -123,13 +127,11 @@ module.exports = {
           console.log("Problem with email business - ", err);
         }
     
-
-//         //5
         const entity = await strapi.services.clients.create(entry);
 
-        return entity
+        // return entity
 
-        // return sanitizeEntity(entity, { model: strapi.models.clients })
+        return sanitizeEntity(entity, { model: strapi.models.clients })
 
     }
 

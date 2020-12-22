@@ -532,6 +532,9 @@
           "businessID": {
             "type": "uid"
           },
+          "InternalID": {
+            "type": "string"
+          },
           "franchise": {
             "type": "boolean",
             "default": false

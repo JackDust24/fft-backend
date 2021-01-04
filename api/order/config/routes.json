@@ -3,7 +3,7 @@
     {
       "method": "POST",
       "path": "/orders/payment",
-      "handler": "order.setUpStripe",
+      "handler": "order.setUpOmise",
       "config": {
         "policies": []
       }

@@ -5,10 +5,13 @@ const stripe = require('stripe')(process.env.STRIPE_KEY);
 const { sanitizeEntity } = require("strapi-utils");
 const path = require("path");
 
-var omise = require('omise')({
-  'secretKey': 'skey_test_5ma9uay5uagsjzgj7b3 ',
+const omise = require('omise')({
+  'secretKey': process.env.OMISE_SECRET_KEY,
   'omiseVersion': '2015-09-10'
 });
+
+require(`dotenv`).config()
+
 
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
@@ -166,61 +169,129 @@ module.exports = {
     
   },
 
-  /*
+  
   setUpOmise: async (ctx) =>  {
     console.log("setupOmise called")
 
     const {
-      nonce
+      cart
     } = ctx.request.body;
 
 
-    console.log("Called Omise Backend ", nonce)
+    console.log("Called Omise Backend ", cart[0].nonce, cart[0].amountForOmise, cart[0].customer_email)
 
-    let omiseResponse;
+    let tok = cart[0].nonce
+    let amount = cart[0].amountForOmise
+    let email = cart[0].customer_email
+    let user = cart[0].customer
 
-    let tokenParameters = {
-      "city": "New York",
-      "country": "US",
-      "expiration_month": 2,
-      "expiration_year": 2022,
-      "name": "Somchai Prasert",
-      "number": "4242424242424242",
-      "phone_number": "0123456789",
-      "postal_code": 10320,
-      "security_code": 123,
-      "state": "NY",
-      "street1": "476 Fifth Avenue"
-    };
+
+
+    // let tokenParameters = {
+    //   "city": "New York",
+    //   "country": "US",
+    //   "expiration_month": 2,
+    //   "expiration_year": 2022,
+    //   "name": "Somchai Prasert",
+    //   "number": "4242424242424242",
+    //   "phone_number": "0123456789",
+    //   "postal_code": 10320,
+    //   "security_code": 123,
+    //   "state": "NY",
+    //   "street1": "476 Fifth Avenue"
+    // };
     
-    omise.charges.create("card",
-                      tokenParameters,
-                      function(statusCode, response) {
+    // omise.charges.create("card",
+    //                   tokenParameters,
+    //                   function(statusCode, response) {
 
-                        // response["id"] is token identifier
+    //                     // response["id"] is token identifier
                       
-                        console.log("Called Omise check -", response)
-                      });
+    //                     console.log("Called Omise check -", response)
+    //                   });
 
     // omiseResponse = await omise.charges.create({
     //   'description': 'Charge for order ID: 888',
-    //   'amount': '100000', // 1,000 Baht
+    //   'amount': '300000', // 1,000 Baht
     //   'currency': 'thb',
     //   'capture': false,
     //   'card': nonce
     // }, function(err, resp) {
+    //   // resp.setHeader('Access-Control-Allow-Origin',"http://localhost:8000");
+    //   // resp.setHeader('Access-Control-Allow-Headers',"*");
+    //   // resp.header('Access-Control-Allow-Credentials', true);
     //   if (resp) {
-    //     console.log("Response 1 - ", resp)
-
+    //     console.log("Response Success - ", resp)
+    //     return resp
     //     //Success
     //   } else {
     //     //Handle failure
-    //     throw resp.failure_code;
+    //     console.log("Response Error - ", err)
+
+    //     // throw resp.failure_code;
     //   }
     // });
 
-    console.log("Response 2 - ", omiseResponse)
+    let omiseResponseCustomer;
+    let omiseResponseCard;
+
+    try {
+
+      let omiseCustomer = await omise.customers.create({
+        'email':       email,
+        'description': user,
+        'card':        tok,
+      }, function(err, resp) {
+          // resp.setHeader('Access-Control-Allow-Origin',"http://localhost:8000");
+          // resp.setHeader('Access-Control-Allow-Headers',"*");
+          // resp.header('Access-Control-Allow-Credentials', true);
+          if (resp) {
+            console.log("Response Success Customer - ", resp)
+            omiseResponseCustomer = resp
+            //Success
+          } else {
+            //Handle failure
+            console.log("Response Customer Error - ", err)
     
+            // throw resp.failure_code;
+          }
+        });
+  
+      console.log("Response 1 - ", omiseResponseCustomer)
+  
+      let omiseCharges = await omise.charges.create({
+          'description': 'Charge for order ID: 888',
+          'amount': amount, // 1,000 Baht
+          'currency': 'thb',
+          // 'capture': false,
+          'customer': omiseCustomer.id
+        }, function(err, resp) {
+          // resp.setHeader('Access-Control-Allow-Origin',"http://localhost:8000");
+          // resp.setHeader('Access-Control-Allow-Headers',"*");
+          // resp.header('Access-Control-Allow-Credentials', true);
+          if (resp) {
+            console.log("Response Success Card - ", resp)
+            omiseResponseCard = resp
+            //Success
+          } else {
+            //Handle failure
+            console.log("Response Card Error - ", err)
+    
+            // throw resp.failure_code;
+          }
+        });
+  
+      console.log("Response 2 - ", omiseResponseCard)
+
+        return omiseResponseCard
+      
+
+    } catch (error) {
+      console.log("Thrown Error - ", error)
+
+    }
+
+
     // {
     //   if (resp.paid) {
     //     //Success
@@ -244,7 +315,7 @@ module.exports = {
     //   return { error: err.message };
     // }
 
-  }, */
+  }, 
 
   create: async (ctx) => {
     const {
@@ -275,27 +346,29 @@ module.exports = {
 
     let paymentInfo;
 
-    try {
-      paymentInfo = await stripe.paymentIntents.retrieve(paymentIntent.id);
-      if (paymentInfo.status !== "succeeded") {
-        throw { message: "You still have to pay" };
-      }
-    } catch (err) {
-      ctx.response.status = 402;
-      return { error: err.message };
-    }
+    // try {
+    //   paymentInfo = await stripe.paymentIntents.retrieve(paymentIntent.id);
+    //   if (paymentInfo.status !== "succeeded") {
+    //     throw { message: "You still have to pay" };
+    //   }
+    // } catch (err) {
+    //   ctx.response.status = 402;
+    //   return { error: err.message };
+    // }
 
     //Check if paymentIntent was not already used to generate an order
     const alreadyExistingOrder = await strapi.services.order.find({
-      payment_intent_id: paymentIntent.id,
+      payment_intent_id: paymentIntent,
     });
 
     if (alreadyExistingOrder && alreadyExistingOrder.length > 0) {
+      console.log("ALready Used - ");
+
       ctx.response.status = 402;
       return { error: "This payment intent was already used" };
     }
 
-    const payment_intent_id = paymentIntent.id;
+    const payment_intent_id = paymentIntent;
 
     //Check if the data is proper 2
 
@@ -390,24 +463,24 @@ module.exports = {
 
     console.log("order.create Check price ", price);
     console.log("order.create Check price_passed ", price_passed);
-    console.log("order.create Check Amount ", paymentInfo.amount);
+    // console.log("order.create Check Amount ", paymentInfo.amount);
 
     console.log("order.create Check price ", package_type);
 
     console.log(typeof price);
     console.log(typeof price_passed);
-    console.log(typeof paymentInfo.amount);
+    // console.log(typeof paymentInfo.amount);
 
     // 8 Check the totals matche)
-
-    if (paymentInfo.amount !== price_passed) {
-      console.log("Problem Here");
-      ctx.response.status = 402;
-      return {
-        error:
-          "The total to be paid is different from the total from the Payment Intent",
-      };
-    }
+      // This needs to be properly checked TODO
+    // if (paymentInfo.amount !== price_passed) {
+    //   console.log("Problem Here");
+    //   ctx.response.status = 402;
+    //   return {
+    //     error:
+    //       "The total to be paid is different from the total from the Payment Intent",
+    //   };
+    // }
 
     let created_date = new Date();
 

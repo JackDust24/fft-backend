@@ -291,30 +291,6 @@ module.exports = {
 
     }
 
-
-    // {
-    //   if (resp.paid) {
-    //     //Success
-    //     console.log("setupOmise paid")
-
-    //   } else {
-    //     //Handle failure
-    //     console.log("setupOmise failed")
-
-    //     throw resp.failure_code;
-    //   }
-    // });
-
-    // try {
-    //   paymentInfo = await stripe.paymentIntents.retrieve(paymentIntent.id);
-    //   if (paymentInfo.status !== "succeeded") {
-    //     throw { message: "You still have to pay" };
-    //   }
-    // } catch (err) {
-    //   ctx.response.status = 402;
-    //   return { error: err.message };
-    // }
-
   }, 
 
   create: async (ctx) => {
@@ -386,6 +362,7 @@ module.exports = {
     let customplan = false;
     let package_type = cart["0"].name;
     let free_months = 0;
+    let order_type = cart["0"].type 
 
     // Use the business_username from the user name field
     let business_username = username;
@@ -521,11 +498,16 @@ module.exports = {
       created_date,
       order_reference,
       business_name,
-      package_type,
+      order_type
     };
 
     //5
     const entity = await strapi.services.order.create(entry);
+
+    // 6 Create a client package
+    // const whatPackages = await strapi.services.packages.find()
+    // console.log("Packages We have - ", whatPackages);
+
 
     let userEmail = user_email;
 
@@ -548,6 +530,8 @@ module.exports = {
                 <p></p>
                 <p>Thank you again, for joining us at Foreigner Friendly Thailand. If you have any questions at all, send a message on to <strong>${sales_rep}</strong> any time and we'll be happy to assist you!</p>
                 <p></p>
+                <p><strong>Price Paid: ฿${price}</strong></p>
+                <p><strong>Tax (included in price): ฿${tax}</strong></p>
                 <p></p>	
                 <p>Best regards,</p>
                 <p></p>

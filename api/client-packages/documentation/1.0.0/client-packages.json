@@ -606,6 +606,9 @@
               "user_email": {
                 "type": "string"
               },
+              "order_type": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

@@ -588,6 +588,9 @@
                 "language_pref": {
                   "type": "string"
                 },
+                "numberOfBusinesses": {
+                  "type": "integer"
+                },
                 "created_by": {
                   "type": "string"
                 },

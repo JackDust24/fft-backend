@@ -733,6 +733,9 @@
               "language_pref": {
                 "type": "string"
               },
+              "numberOfBusinesses": {
+                "type": "integer"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -768,6 +771,10 @@
           },
           "user_email": {
             "type": "string"
+          },
+          "order_type": {
+            "type": "string",
+            "default": "package"
           },
           "published_at": {
             "type": "string",
@@ -842,6 +849,10 @@
           },
           "user_email": {
             "type": "string"
+          },
+          "order_type": {
+            "type": "string",
+            "default": "package"
           },
           "published_at": {
             "type": "string",

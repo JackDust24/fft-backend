@@ -1487,6 +1487,9 @@
               "user_email": {
                 "type": "string"
               },
+              "order_type": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -1557,6 +1560,9 @@
               "display_order": {
                 "type": "integer"
               },
+              "type": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -1582,6 +1588,10 @@
               "EN",
               "TH"
             ]
+          },
+          "numberOfBusinesses": {
+            "type": "integer",
+            "default": 1
           }
         }
       },
@@ -1658,6 +1668,10 @@
               "EN",
               "TH"
             ]
+          },
+          "numberOfBusinesses": {
+            "type": "integer",
+            "default": 1
           },
           "created_by": {
             "type": "string"

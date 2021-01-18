@@ -66,6 +66,10 @@
     "display_order": {
       "type": "integer",
       "default": 999
+    },
+    "type": {
+      "type": "string",
+      "default": "package"
     }
   }
 }

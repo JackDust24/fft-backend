@@ -93,6 +93,10 @@
         "TH"
       ],
       "default": "EN"
+    },
+    "numberOfBusinesses": {
+      "type": "integer",
+      "default": 1
     }
   }
 }

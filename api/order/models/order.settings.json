@@ -79,6 +79,10 @@
     },
     "user_email": {
       "type": "email"
+    },
+    "order_type": {
+      "type": "string",
+      "default": "package"
     }
   }
 }

@@ -577,6 +577,10 @@
             "type": "integer",
             "default": 999
           },
+          "type": {
+            "type": "string",
+            "default": "package"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -641,6 +645,10 @@
           "display_order": {
             "type": "integer",
             "default": 999
+          },
+          "type": {
+            "type": "string",
+            "default": "package"
           },
           "published_at": {
             "type": "string",

@@ -10,6 +10,8 @@ const omise = require('omise')({
   'omiseVersion': '2015-09-10'
 });
 
+const return_uri2 = `http://localhost:8000/cart/confirmation/`
+
 require(`dotenv`).config()
 
 
@@ -178,62 +180,17 @@ module.exports = {
     } = ctx.request.body;
 
 
-    console.log("Called Omise Backend ", cart[0].nonce, cart[0].amountForOmise, cart[0].customer_email)
+    console.log("Called Omise Backend ", cart[0].nonce, cart[0].amountForOmise, cart[0].customer_email, cart[0].return_uri)
 
     let tok = cart[0].nonce
     let amount = cart[0].amountForOmise
     let email = cart[0].customer_email
     let user = cart[0].customer
 
-
-
-    // let tokenParameters = {
-    //   "city": "New York",
-    //   "country": "US",
-    //   "expiration_month": 2,
-    //   "expiration_year": 2022,
-    //   "name": "Somchai Prasert",
-    //   "number": "4242424242424242",
-    //   "phone_number": "0123456789",
-    //   "postal_code": 10320,
-    //   "security_code": 123,
-    //   "state": "NY",
-    //   "street1": "476 Fifth Avenue"
-    // };
-    
-    // omise.charges.create("card",
-    //                   tokenParameters,
-    //                   function(statusCode, response) {
-
-    //                     // response["id"] is token identifier
-                      
-    //                     console.log("Called Omise check -", response)
-    //                   });
-
-    // omiseResponse = await omise.charges.create({
-    //   'description': 'Charge for order ID: 888',
-    //   'amount': '300000', // 1,000 Baht
-    //   'currency': 'thb',
-    //   'capture': false,
-    //   'card': nonce
-    // }, function(err, resp) {
-    //   // resp.setHeader('Access-Control-Allow-Origin',"http://localhost:8000");
-    //   // resp.setHeader('Access-Control-Allow-Headers',"*");
-    //   // resp.header('Access-Control-Allow-Credentials', true);
-    //   if (resp) {
-    //     console.log("Response Success - ", resp)
-    //     return resp
-    //     //Success
-    //   } else {
-    //     //Handle failure
-    //     console.log("Response Error - ", err)
-
-    //     // throw resp.failure_code;
-    //   }
-    // });
-
     let omiseResponseCustomer;
     let omiseResponseCard;
+
+    let return_uri = cart[0].return_uri
 
     try {
 
@@ -264,11 +221,10 @@ module.exports = {
           'amount': amount, // 1,000 Baht
           'currency': 'thb',
           // 'capture': false,
-          'customer': omiseCustomer.id
+          'customer': omiseCustomer.id,
+          'return_uri': return_uri
         }, function(err, resp) {
-          // resp.setHeader('Access-Control-Allow-Origin',"http://localhost:8000");
-          // resp.setHeader('Access-Control-Allow-Headers',"*");
-          // resp.header('Access-Control-Allow-Credentials', true);
+
           if (resp) {
             console.log("Response Success Card - ", resp)
             omiseResponseCard = resp
@@ -281,21 +237,22 @@ module.exports = {
           }
         });
   
-      console.log("Response 2 - ", omiseResponseCard)
+        console.log("Response 2 - ", omiseResponseCard)
 
         return omiseResponseCard
-      
 
-    } catch (error) {
+
+      } catch (error) {
       console.log("Thrown Error - ", error)
 
-    }
+      }
+
 
   }, 
 
   create: async (ctx) => {
     const {
-      paymentIntent,
+      chargeId,
       order_name,
       sales_rep,
       username,
@@ -309,7 +266,7 @@ module.exports = {
     // 1
     //Payment intent for validation
 
-    console.log("**** check data - " + paymentIntent,
+    console.log("**** check data - " + chargeId,
     order_name,
     sales_rep,
     username,
@@ -319,22 +276,42 @@ module.exports = {
     cart,
     language_pref);
 
+    //2. Part of Omise 3D security, check that the chargeId matches the charge.
+
+    console.log("Try and retrieve - ");
+    let chargeTestId = 'chrg_test_5mqadhnr0nbs4zrqzyi'
+
+    let omiseCheckCharge = await omise.charges.retrieve(chargeId, function(err, resp) {
+
+     if (resp) {
+      console.log("******** Omise Check- ", resp)
+
+      console.log("******** Omise Check 2- ", resp.status)
+
+      if (resp.status !== "successful") {
+        console.log("******** Omise Check Failure- ")
+        ctx.response.status = 402;
+        return { error: "Payment did not go through" };
+      }
+
+      //Success
+    } else {
+      //Handle failure
+      console.log("******** Omise Check Err - ", err)
+      ctx.response.status = 402;
+
+      // throw resp.failure_code;
+    }
+  });
+
 
     let paymentInfo;
 
-    // try {
-    //   paymentInfo = await stripe.paymentIntents.retrieve(paymentIntent.id);
-    //   if (paymentInfo.status !== "succeeded") {
-    //     throw { message: "You still have to pay" };
-    //   }
-    // } catch (err) {
-    //   ctx.response.status = 402;
-    //   return { error: err.message };
-    // }
+
 
     //Check if paymentIntent was not already used to generate an order
     const alreadyExistingOrder = await strapi.services.order.find({
-      payment_intent_id: paymentIntent,
+      payment_intent_id: chargeId,
     });
 
     if (alreadyExistingOrder && alreadyExistingOrder.length > 0) {
@@ -344,7 +321,7 @@ module.exports = {
       return { error: "This payment intent was already used" };
     }
 
-    const payment_intent_id = paymentIntent;
+    const payment_intent_id = chargeId;
 
     //Check if the data is proper 2
 
@@ -426,13 +403,6 @@ module.exports = {
     console.log("order.create packages", packagesChosen);
     console.log("order.create sanitizedCart", sanitizedCart);
 
-    //Fetch the products and add them to the products array, also set up product_qty
-
-    //7 The taxes work out
-    // let subtotal_in_cents = parseInt(strapi.config.functions.cart.cartSubtotal(sanitizedCart))
-    // console.log("subtotal_in_cents", subtotal_in_cents)
-    // let taxes_in_cents = parseInt(strapi.config.functions.cart.cartTaxes(sanitizedCart))
-    // console.log("taxes_in_cents", taxes_in_cents)
     let price_passed = parseInt(price);
 
     // Then we multiply by 100 as it is in lowest form, i.e. 100 baht is 10000 (including satang).
@@ -447,17 +417,6 @@ module.exports = {
     console.log(typeof price);
     console.log(typeof price_passed);
     // console.log(typeof paymentInfo.amount);
-
-    // 8 Check the totals matche)
-      // This needs to be properly checked TODO
-    // if (paymentInfo.amount !== price_passed) {
-    //   console.log("Problem Here");
-    //   ctx.response.status = 402;
-    //   return {
-    //     error:
-    //       "The total to be paid is different from the total from the Payment Intent",
-    //   };
-    // }
 
     let created_date = new Date();
 
@@ -503,11 +462,6 @@ module.exports = {
 
     //5
     const entity = await strapi.services.order.create(entry);
-
-    // 6 Create a client package
-    // const whatPackages = await strapi.services.packages.find()
-    // console.log("Packages We have - ", whatPackages);
-
 
     let userEmail = user_email;
 

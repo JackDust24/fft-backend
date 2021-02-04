@@ -1,0 +1,144 @@
+{
+  "kind": "collectionType",
+  "collectionName": "branches",
+  "info": {
+    "name": "branches",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "client_name": {
+      "type": "string",
+      "required": true
+    },
+    "client": {
+      "model": "clients",
+      "via": "branches"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "branches"
+    },
+    "location": {
+      "type": "json"
+    },
+    "Category": {
+      "type": "string"
+    },
+    "Sub_category": {
+      "type": "string"
+    },
+    "Address_line_1": {
+      "type": "string"
+    },
+    "Address_line_2": {
+      "type": "string"
+    },
+    "District": {
+      "type": "string"
+    },
+    "Province": {
+      "type": "string"
+    },
+    "Discount": {
+      "type": "string"
+    },
+    "Discount_alt": {
+      "type": "string"
+    },
+    "English_speaking": {
+      "type": "boolean"
+    },
+    "Fair_pricing": {
+      "type": "boolean"
+    },
+    "Parking": {
+      "type": "boolean"
+    },
+    "Date_created": {
+      "type": "date"
+    },
+    "Date_updated": {
+      "type": "date"
+    },
+    "Opening_times": {
+      "type": "richtext"
+    },
+    "Branch_contact": {
+      "type": "email"
+    },
+    "Branch_phone": {
+      "type": "password"
+    },
+    "website_url": {
+      "type": "string"
+    },
+    "social_media_fb": {
+      "type": "string"
+    },
+    "social_media_instagram": {
+      "type": "string"
+    },
+    "branch_logo": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "branch_description_small": {
+      "type": "string"
+    },
+    "branch_description_long": {
+      "type": "text"
+    },
+    "video": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "main_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "other_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "branch_name": {
+      "type": "string"
+    },
+    "family_friendly": {
+      "type": "boolean"
+    }
+  }
+}

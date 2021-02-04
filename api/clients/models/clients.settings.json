@@ -189,6 +189,10 @@
     },
     "sales_rep_email": {
       "type": "email"
+    },
+    "branches": {
+      "via": "client",
+      "collection": "branches"
     }
   }
 }

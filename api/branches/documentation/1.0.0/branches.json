@@ -1,89 +1,18 @@
 {
   "paths": {
-    "/orders/payment": {
-      "post": {
-        "deprecated": false,
-        "description": "Create a new record",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Order"
-        ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "foo": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/orders": {
+    "/branches": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find all the branches's records",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve branches document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Order"
+                    "$ref": "#/components/schemas/Branches"
                   }
                 }
               }
@@ -122,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Branches"
         ],
         "parameters": [
           {
@@ -265,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new record",
+        "description": "Create a new branches record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve branches document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Branches"
                 }
               }
             }
@@ -310,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Branches"
         ],
         "requestBody": {
           "description": "",
@@ -318,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOrder"
+                "$ref": "#/components/schemas/NewBranches"
               }
             }
           }
         }
       }
     },
-    "/orders/count": {
+    "/branches/count": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Retrieve the numver of branches documents",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve branches document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -377,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Branches"
         ],
         "parameters": []
       }
     },
-    "/orders/{id}": {
+    "/branches/{id}": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find one branches record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve branches document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Branches"
                 }
               }
             }
@@ -430,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Branches"
         ],
         "parameters": [
           {
@@ -447,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a record",
+        "description": "Update a single branches record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve branches document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Branches"
                 }
               }
             }
@@ -492,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Branches"
         ],
         "requestBody": {
           "description": "",
@@ -500,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOrder"
+                "$ref": "#/components/schemas/NewBranches"
               }
             }
           }
@@ -520,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a record",
+        "description": "Delete a single branches record",
         "responses": {
           "200": {
-            "description": "deletes a single record based on the ID supplied",
+            "description": "deletes a single branches based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -566,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Branches"
         ],
         "parameters": [
           {
@@ -585,87 +514,179 @@
   },
   "components": {
     "schemas": {
-      "Order": {
+      "Branches": {
         "required": [
-          "id"
+          "id",
+          "client_name"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "order_name": {
+          "client_name": {
             "type": "string"
           },
-          "price": {
-            "type": "integer"
-          },
-          "payment_intent_id": {
-            "type": "string"
-          },
-          "lengthOfPackage": {
-            "type": "integer"
-          },
-          "amount": {
-            "type": "number"
-          },
-          "free_months": {
-            "type": "integer",
-            "default": 0
-          },
-          "tax": {
-            "type": "integer"
-          },
-          "vat": {
-            "type": "integer"
-          },
-          "created_date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "sales_rep": {
-            "type": "string"
-          },
-          "sales_rep_link": {
+          "client": {
             "required": [
               "id",
-              "email"
+              "business_name",
+              "franchise",
+              "client_contact",
+              "setup_by"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "firstname": {
+              "business_name": {
                 "type": "string"
               },
-              "lastname": {
+              "businessID": {
+                "type": "uid"
+              },
+              "InternalID": {
                 "type": "string"
               },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "registrationToken": {
-                "type": "string"
-              },
-              "isActive": {
+              "franchise": {
                 "type": "boolean"
               },
-              "roles": {
+              "client_user": {
+                "type": "string"
+              },
+              "business_description": {
+                "type": "string"
+              },
+              "client_contact": {
+                "type": "string"
+              },
+              "client_email": {
+                "type": "string"
+              },
+              "client_phone_number": {
+                "type": "integer"
+              },
+              "address": {
+                "type": "string"
+              },
+              "district": {
+                "type": "string"
+              },
+              "province": {
+                "type": "string"
+              },
+              "about_us": {
+                "type": "string"
+              },
+              "main_image": {
+                "type": "string"
+              },
+              "other_images": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "blocked": {
+              "logo": {
+                "type": "string"
+              },
+              "video_link": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "site_details": {
+                "type": "string"
+              },
+              "opening_times": {
+                "type": "string"
+              },
+              "membership_status": {
+                "type": "string"
+              },
+              "website": {
+                "type": "string"
+              },
+              "other_business_links": {
+                "type": "string"
+              },
+              "social_media_fb": {
+                "type": "string"
+              },
+              "social_media_instagram": {
+                "type": "string"
+              },
+              "social_mediaI_twitter": {
+                "type": "string"
+              },
+              "fft_service_marker": {
                 "type": "boolean"
+              },
+              "fft_english_marker": {
+                "type": "boolean"
+              },
+              "membership_expiry": {
+                "type": "string"
+              },
+              "promotions_allowed": {
+                "type": "integer"
+              },
+              "promotions_purchased": {
+                "type": "integer"
+              },
+              "date_joined": {
+                "type": "string"
+              },
+              "contact_business": {
+                "type": "string"
+              },
+              "discount_info": {
+                "type": "string"
+              },
+              "coordinates": {
+                "type": "object"
+              },
+              "sales_rep": {
+                "type": "string"
+              },
+              "orders": {
+                "type": "string"
+              },
+              "business_type": {
+                "type": "string"
+              },
+              "setup_by": {
+                "type": "string"
+              },
+              "business_display_name": {
+                "type": "string"
+              },
+              "business_category": {
+                "type": "string"
+              },
+              "business_sub_category": {
+                "type": "string"
+              },
+              "terms": {
+                "type": "boolean"
+              },
+              "sales_rep_email": {
+                "type": "string"
+              },
+              "branches": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
@@ -750,37 +771,354 @@
               }
             }
           },
-          "payment_type": {
+          "location": {
+            "type": "object"
+          },
+          "Category": {
             "type": "string"
           },
-          "order_ID": {
-            "type": "uid"
-          },
-          "customplan": {
-            "type": "boolean",
-            "default": false
-          },
-          "package_type": {
+          "Sub_category": {
             "type": "string"
           },
-          "business_name": {
+          "Address_line_1": {
             "type": "string"
           },
-          "business_username": {
+          "Address_line_2": {
             "type": "string"
           },
-          "order_reference": {
+          "District": {
             "type": "string"
           },
-          "sales_rep_email": {
+          "Province": {
             "type": "string"
           },
-          "user_email": {
+          "Discount": {
             "type": "string"
           },
-          "order_type": {
+          "Discount_alt": {
+            "type": "string"
+          },
+          "English_speaking": {
+            "type": "boolean"
+          },
+          "Fair_pricing": {
+            "type": "boolean"
+          },
+          "Parking": {
+            "type": "boolean"
+          },
+          "Date_created": {
             "type": "string",
-            "default": "package"
+            "format": "date"
+          },
+          "Date_updated": {
+            "type": "string",
+            "format": "date"
+          },
+          "Opening_times": {
+            "type": "string"
+          },
+          "Branch_contact": {
+            "type": "string"
+          },
+          "Branch_phone": {
+            "type": "string",
+            "format": "password"
+          },
+          "website_url": {
+            "type": "string"
+          },
+          "social_media_fb": {
+            "type": "string"
+          },
+          "social_media_instagram": {
+            "type": "string"
+          },
+          "branch_logo": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "name",
+                "hash",
+                "mime",
+                "size",
+                "url",
+                "provider"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "alternativeText": {
+                  "type": "string"
+                },
+                "caption": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer"
+                },
+                "height": {
+                  "type": "integer"
+                },
+                "formats": {
+                  "type": "object"
+                },
+                "hash": {
+                  "type": "string"
+                },
+                "ext": {
+                  "type": "string"
+                },
+                "mime": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "number"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "previewUrl": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "provider_metadata": {
+                  "type": "object"
+                },
+                "related": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "branch_description_small": {
+            "type": "string"
+          },
+          "branch_description_long": {
+            "type": "string"
+          },
+          "video": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "main_image": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "other_images": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "name",
+                "hash",
+                "mime",
+                "size",
+                "url",
+                "provider"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "alternativeText": {
+                  "type": "string"
+                },
+                "caption": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer"
+                },
+                "height": {
+                  "type": "integer"
+                },
+                "formats": {
+                  "type": "object"
+                },
+                "hash": {
+                  "type": "string"
+                },
+                "ext": {
+                  "type": "string"
+                },
+                "mime": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "number"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "previewUrl": {
+                  "type": "string"
+                },
+                "provider": {
+                  "type": "string"
+                },
+                "provider_metadata": {
+                  "type": "object"
+                },
+                "related": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "branch_name": {
+            "type": "string"
+          },
+          "family_friendly": {
+            "type": "boolean"
           },
           "published_at": {
             "type": "string",
@@ -788,77 +1126,94 @@
           }
         }
       },
-      "NewOrder": {
+      "NewBranches": {
+        "required": [
+          "client_name"
+        ],
         "properties": {
-          "order_name": {
+          "client_name": {
             "type": "string"
           },
-          "price": {
-            "type": "integer"
-          },
-          "payment_intent_id": {
-            "type": "string"
-          },
-          "lengthOfPackage": {
-            "type": "integer"
-          },
-          "amount": {
-            "type": "number"
-          },
-          "free_months": {
-            "type": "integer",
-            "default": 0
-          },
-          "tax": {
-            "type": "integer"
-          },
-          "vat": {
-            "type": "integer"
-          },
-          "created_date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "sales_rep": {
-            "type": "string"
-          },
-          "sales_rep_link": {
+          "client": {
             "type": "string"
           },
           "users_permissions_user": {
             "type": "string"
           },
-          "payment_type": {
+          "location": {
+            "type": "object"
+          },
+          "Category": {
             "type": "string"
           },
-          "order_ID": {
-            "type": "uid"
-          },
-          "customplan": {
-            "type": "boolean",
-            "default": false
-          },
-          "package_type": {
+          "Sub_category": {
             "type": "string"
           },
-          "business_name": {
+          "Address_line_1": {
             "type": "string"
           },
-          "business_username": {
+          "Address_line_2": {
             "type": "string"
           },
-          "order_reference": {
+          "District": {
             "type": "string"
           },
-          "sales_rep_email": {
+          "Province": {
             "type": "string"
           },
-          "user_email": {
+          "Discount": {
             "type": "string"
           },
-          "order_type": {
+          "Discount_alt": {
+            "type": "string"
+          },
+          "English_speaking": {
+            "type": "boolean"
+          },
+          "Fair_pricing": {
+            "type": "boolean"
+          },
+          "Parking": {
+            "type": "boolean"
+          },
+          "Date_created": {
             "type": "string",
-            "default": "package"
+            "format": "date"
+          },
+          "Date_updated": {
+            "type": "string",
+            "format": "date"
+          },
+          "Opening_times": {
+            "type": "string"
+          },
+          "Branch_contact": {
+            "type": "string"
+          },
+          "Branch_phone": {
+            "type": "string",
+            "format": "password"
+          },
+          "website_url": {
+            "type": "string"
+          },
+          "social_media_fb": {
+            "type": "string"
+          },
+          "social_media_instagram": {
+            "type": "string"
+          },
+          "branch_description_small": {
+            "type": "string"
+          },
+          "branch_description_long": {
+            "type": "string"
+          },
+          "branch_name": {
+            "type": "string"
+          },
+          "family_friendly": {
+            "type": "boolean"
           },
           "published_at": {
             "type": "string",
@@ -876,7 +1231,7 @@
   },
   "tags": [
     {
-      "name": "Order"
+      "name": "Branches"
     }
   ]
 }

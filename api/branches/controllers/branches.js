@@ -1,0 +1,102 @@
+'use strict';
+const { sanitizeEntity } = require("strapi-utils");
+
+
+/**
+ * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
+ * to customize this controller
+ */
+
+module.exports = {
+
+    create: async (ctx) => {
+        const {
+           data,
+           name,
+           clientId,
+           userId
+        } = ctx.request.body
+
+        console.log("Backend called")
+
+        console.log("Backend called data ", data)
+        console.log("Backend called name ", data.name)
+        console.log("Backend called category ", data.category)
+        console.log("Backend called district ", data.district)
+
+
+        console.log("Backend called clientId ", clientId)
+        console.log("Backend called userId ", userId)
+
+
+        console.log("Backend called Data ", ctx.request.body)
+
+       let created_date = new Date();
+
+       console.log(created_date);
+
+        let client_name = data.name; // We will remove this soon and only have branch name.
+        let branch_name = data.name;
+        let Branch_contact = data.email;
+        let Branch_phone = data.phone;
+        let Category = data.category;
+        let Sub_category = data.subCategory;
+        let Address_line_1 = data.address1;
+        let Address_line_2 = data.address2;
+        let District = data.district;
+        let Province = data.province;
+        let postCode = data.postCode;
+        let Fair_pricing = data.fftBool;
+        let Date_created = created_date;
+        let English_speaking = data.englishBool;
+        let Parking = data.parkingBool;
+        let family_friendly = data.familyBool;
+        let website_url = data.website;
+        let social_media_fb = data.facebook;
+        let social_media_instagram = data.instagram;
+        let branch_description_small = data.smDescription;
+        let branch_description_long = data.lgDescription;
+        let branch_logo = data.logo;
+        let main_image = data.mainImage;
+
+        let client = clientId;
+        let users_permission_user = userId;
+
+        console.log("Check called category ", data.category)
+        console.log("Check called district ", data.district)
+
+
+        const entry = {
+            client_name,
+            branch_name,
+            Branch_contact,
+            client,
+            Category,
+            Sub_category,
+            Address_line_1,
+            Address_line_2,
+            District,
+            Province,
+            postCode,
+            Fair_pricing,
+            Date_created,
+            English_speaking,
+            Parking,
+            family_friendly,
+            Branch_phone,
+            website_url,
+            social_media_fb,
+            social_media_instagram,
+            branch_description_small,
+            branch_description_long,
+            branch_logo,
+            main_image
+        }
+
+        const entity = await strapi.services.branches.create(entry);
+
+        // return entity
+
+        return sanitizeEntity(entity, { model: strapi.models.branches })
+    }
+};

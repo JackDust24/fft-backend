@@ -767,6 +767,12 @@
               "sales_rep_email": {
                 "type": "string"
               },
+              "branches": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "published_at": {
                 "type": "string"
               },

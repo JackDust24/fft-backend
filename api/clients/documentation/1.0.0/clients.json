@@ -606,6 +606,12 @@
               "numberOfBusinesses": {
                 "type": "integer"
               },
+              "branches": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -1076,6 +1082,128 @@
           "sales_rep_email": {
             "type": "string"
           },
+          "branches": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "client_name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "client_name": {
+                  "type": "string"
+                },
+                "client": {
+                  "type": "string"
+                },
+                "users_permissions_user": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "object"
+                },
+                "Category": {
+                  "type": "string"
+                },
+                "Sub_category": {
+                  "type": "string"
+                },
+                "Address_line_1": {
+                  "type": "string"
+                },
+                "Address_line_2": {
+                  "type": "string"
+                },
+                "District": {
+                  "type": "string"
+                },
+                "Province": {
+                  "type": "string"
+                },
+                "Discount": {
+                  "type": "string"
+                },
+                "Discount_alt": {
+                  "type": "string"
+                },
+                "English_speaking": {
+                  "type": "boolean"
+                },
+                "Fair_pricing": {
+                  "type": "boolean"
+                },
+                "Parking": {
+                  "type": "boolean"
+                },
+                "Date_created": {
+                  "type": "string"
+                },
+                "Date_updated": {
+                  "type": "string"
+                },
+                "Opening_times": {
+                  "type": "string"
+                },
+                "Branch_contact": {
+                  "type": "string"
+                },
+                "Branch_phone": {
+                  "type": "string"
+                },
+                "website_url": {
+                  "type": "string"
+                },
+                "social_media_fb": {
+                  "type": "string"
+                },
+                "social_media_instagram": {
+                  "type": "string"
+                },
+                "branch_logo": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "branch_description_small": {
+                  "type": "string"
+                },
+                "branch_description_long": {
+                  "type": "string"
+                },
+                "video": {
+                  "type": "string"
+                },
+                "main_image": {
+                  "type": "string"
+                },
+                "other_images": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "branch_name": {
+                  "type": "string"
+                },
+                "family_friendly": {
+                  "type": "boolean"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1211,6 +1339,12 @@
           },
           "sales_rep_email": {
             "type": "string"
+          },
+          "branches": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "published_at": {
             "type": "string",

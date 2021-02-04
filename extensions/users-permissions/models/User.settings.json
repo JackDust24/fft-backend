@@ -97,6 +97,10 @@
     "numberOfBusinesses": {
       "type": "integer",
       "default": 1
+    },
+    "branches": {
+      "via": "users_permissions_user",
+      "collection": "branches"
     }
   }
 }

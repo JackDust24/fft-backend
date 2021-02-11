@@ -607,10 +607,10 @@
                 "type": "integer"
               },
               "branches": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "type": "string"
+              },
+              "free_months": {
+                "type": "integer"
               },
               "created_by": {
                 "type": "string"
@@ -1097,9 +1097,6 @@
                   "type": "string"
                 },
                 "client": {
-                  "type": "string"
-                },
-                "users_permissions_user": {
                   "type": "string"
                 },
                 "location": {

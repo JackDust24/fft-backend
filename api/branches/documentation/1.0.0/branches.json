@@ -690,87 +690,6 @@
               }
             }
           },
-          "users_permissions_user": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "can_create_business": {
-                "type": "boolean"
-              },
-              "client": {
-                "type": "string"
-              },
-              "client_created": {
-                "type": "string"
-              },
-              "orders": {
-                "type": "string"
-              },
-              "sales_rep_email": {
-                "type": "string"
-              },
-              "package": {
-                "type": "string"
-              },
-              "packages": {
-                "type": "object"
-              },
-              "free_plan": {
-                "type": "boolean"
-              },
-              "language_pref": {
-                "type": "string"
-              },
-              "numberOfBusinesses": {
-                "type": "integer"
-              },
-              "branches": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "location": {
             "type": "object"
           },
@@ -1135,9 +1054,6 @@
             "type": "string"
           },
           "client": {
-            "type": "string"
-          },
-          "users_permissions_user": {
             "type": "string"
           },
           "location": {

@@ -12,7 +12,6 @@ module.exports = {
     create: async (ctx) => {
         const {
            data,
-           name,
            clientId,
            userId
         } = ctx.request.body
@@ -60,7 +59,7 @@ module.exports = {
         let main_image = data.mainImage;
 
         let client = clientId;
-        let users_permission_user = userId;
+        let user = userId;
 
         console.log("Check called category ", data.category)
         console.log("Check called district ", data.district)
@@ -90,10 +89,16 @@ module.exports = {
             branch_description_small,
             branch_description_long,
             branch_logo,
-            main_image
+            main_image,
+            user
         }
 
+        console.log("Create entity")
+
+
         const entity = await strapi.services.branches.create(entry);
+
+        console.log("Create entity 2")
 
         // return entity
 

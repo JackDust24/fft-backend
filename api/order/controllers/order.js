@@ -423,21 +423,38 @@ module.exports = {
     console.log(created_date);
 
     // Create Order number:
-
+/*
     const randomString = (length) => {
       let chars = [],
         output = "";
-      for (let i = 33; i < 127; i++) {
+      for (let i = 48; i < 57; i++) {
         chars.push(String.fromCharCode(i));
       }
       for (let i = 0; i < length; i++) {
         output += chars[Math.floor(Math.random() * chars.length)];
       }
       return output;
-    };
+    }; */
+    const randomString = (length) => {
+      var emptyString = "";
+      var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ0123456789";
 
-    const order_reference = randomString(12);
+      while (emptyString.length < length) {
+          emptyString += alphabet[Math.floor(Math.random() * alphabet.length)];
+      }
+      
+      return emptyString;
+    }; 
+
+    const random = randomString(12);
+
+    const order_reference = `FFTOD-${random}`
+
     console.log(order_reference);
+
+       // See what orders are found:
+    // const alreadyExistingOrder = await strapi.query('order').find({ 
+    //   _sort: 'created_date' });
 
     // 3 TO DO - Add packages chosen and username
     const entry = {

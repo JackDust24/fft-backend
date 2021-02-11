@@ -737,10 +737,10 @@
                 "type": "integer"
               },
               "branches": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "type": "string"
+              },
+              "free_months": {
+                "type": "integer"
               },
               "created_by": {
                 "type": "string"

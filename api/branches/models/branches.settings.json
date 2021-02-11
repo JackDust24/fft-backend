@@ -19,11 +19,6 @@
       "model": "clients",
       "via": "branches"
     },
-    "users_permissions_user": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "branches"
-    },
     "location": {
       "type": "json"
     },

@@ -215,9 +215,11 @@ module.exports = {
         });
   
       console.log("Response 1 - ", omiseResponseCustomer)
+
+      let description = `Payment for ${email}`
   
       let omiseCharges = await omise.charges.create({
-          'description': 'Charge for order ID: 888',
+          'description': description,
           'amount': amount, // 1,000 Baht
           'currency': 'thb',
           // 'capture': false,
@@ -261,6 +263,7 @@ module.exports = {
       sales_rep_email,
       cart,
       language_pref,
+      hasPaidQRCode,
     } = ctx.request.body;
 
     // 1
@@ -276,50 +279,58 @@ module.exports = {
     cart,
     language_pref);
 
+    console.log("**** check QR - ", hasPaidQRCode);
+
     //2. Part of Omise 3D security, check that the chargeId matches the charge.
 
-    console.log("Try and retrieve - ");
-    let chargeTestId = 'chrg_test_5mqadhnr0nbs4zrqzyi'
+    // If user has paid by QR this is not needed
+   if (!hasPaidQRCode) {
+
+    console.log("User has paid through Omise");
 
     let omiseCheckCharge = await omise.charges.retrieve(chargeId, function(err, resp) {
 
-     if (resp) {
-      console.log("******** Omise Check- ", resp)
-
-      console.log("******** Omise Check 2- ", resp.status)
-
-      if (resp.status !== "successful") {
-        console.log("******** Omise Check Failure- ")
-        ctx.response.status = 402;
-        return { error: "Payment did not go through" };
-      }
-
-      //Success
-    } else {
-      //Handle failure
-      console.log("******** Omise Check Err - ", err)
-      ctx.response.status = 402;
-
-      // throw resp.failure_code;
+      if (resp) {
+       console.log("******** Omise Check- ", resp)
+ 
+       console.log("******** Omise Check 2- ", resp.status)
+ 
+       if (resp.status !== "successful") {
+         console.log("******** Omise Check Failure- ")
+         ctx.response.status = 402;
+         return { error: "Payment did not go through" };
+       }
+ 
+       //Success
+     } else {
+       //Handle failure
+       console.log("******** Omise Check Err - ", err)
+       ctx.response.status = 402;
+ 
+       // throw resp.failure_code;
+     }
+   });
+ 
+ 
+ 
+ 
+ 
+     //Check if paymentIntent was not already used to generate an order
+     const alreadyExistingOrder = await strapi.services.order.find({
+       payment_intent_id: chargeId,
+     });
+ 
+     if (alreadyExistingOrder && alreadyExistingOrder.length > 0) {
+       console.log("ALready Used - ");
+ 
+       ctx.response.status = 402;
+       return { error: "This payment intent was already used" };
+     }
     }
-  });
+
 
 
     let paymentInfo;
-
-
-
-    //Check if paymentIntent was not already used to generate an order
-    const alreadyExistingOrder = await strapi.services.order.find({
-      payment_intent_id: chargeId,
-    });
-
-    if (alreadyExistingOrder && alreadyExistingOrder.length > 0) {
-      console.log("ALready Used - ");
-
-      ctx.response.status = 402;
-      return { error: "This payment intent was already used" };
-    }
 
     const payment_intent_id = chargeId;
 
@@ -400,8 +411,7 @@ module.exports = {
 
     // 4
     // console.log("order.create product_qty", product_qty)
-    console.log("order.create packages", packagesChosen);
-    console.log("order.create sanitizedCart", sanitizedCart);
+    console.log("sanitizedCart", sanitizedCart);
 
     let price_passed = parseInt(price);
 

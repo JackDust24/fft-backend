@@ -104,6 +104,10 @@
     "free_months": {
       "type": "integer",
       "default": 0
+    },
+    "hasPaidQRCode": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

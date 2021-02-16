@@ -1718,6 +1718,10 @@
           "free_months": {
             "type": "integer",
             "default": 0
+          },
+          "hasPaidQRCode": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -1805,6 +1809,10 @@
           "free_months": {
             "type": "integer",
             "default": 0
+          },
+          "hasPaidQRCode": {
+            "type": "boolean",
+            "default": false
           },
           "created_by": {
             "type": "string"

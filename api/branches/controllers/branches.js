@@ -16,19 +16,17 @@ module.exports = {
            userId
         } = ctx.request.body
 
-        console.log("Backend called")
+        console.log("Backend called = ", ctx.request.body)
 
         console.log("Backend called data ", data)
         console.log("Backend called name ", data.name)
         console.log("Backend called category ", data.category)
         console.log("Backend called district ", data.district)
-
+        console.log("Backend called Image ", data.mainImage)
 
         console.log("Backend called clientId ", clientId)
         console.log("Backend called userId ", userId)
 
-
-        console.log("Backend called Data ", ctx.request.body)
 
        let created_date = new Date();
 
@@ -55,8 +53,8 @@ module.exports = {
         let social_media_instagram = data.instagram;
         let branch_description_small = data.smDescription;
         let branch_description_long = data.lgDescription;
-        let branch_logo = data.logo;
-        let main_image = data.mainImage;
+        // let branch_logo = data.logo;
+        // let main_image = 'Have to agree the docs are poor. Knowing how to upload a file from React to a new entry into a content type has got me stumped all day. Still stuck.'
 
         let client = clientId;
         let user = userId;
@@ -88,8 +86,8 @@ module.exports = {
             social_media_instagram,
             branch_description_small,
             branch_description_long,
-            branch_logo,
-            main_image,
+            // branch_logo,
+            // main_image,
             user
         }
 

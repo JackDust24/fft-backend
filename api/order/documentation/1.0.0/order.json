@@ -742,6 +742,9 @@
               "free_months": {
                 "type": "integer"
               },
+              "hasPaidQRCode": {
+                "type": "boolean"
+              },
               "created_by": {
                 "type": "string"
               },

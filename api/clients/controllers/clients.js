@@ -46,21 +46,35 @@ module.exports = {
         console.log("clients.create ctx.request.body ", ctx.request.body)
 
          console.log(typeof setup_by)
+  
+          // Create Internal ID
+          const randomString = (length) => {
+            var emptyString = "";
+            var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ";
+      
+            while (emptyString.length < length) {
+                emptyString += alphabet[Math.floor(Math.random() * alphabet.length)];
+            }
+            
+            return emptyString;
+          }; 
 
-         const randomString = (length) => {
-            let chars = [],
-              output = "";
-            for (let i = 33; i < 127; i++) {
-              chars.push(String.fromCharCode(i));
+          const randomNumber = (length) => {
+            var emptyString = "";
+            var alphabet = "0123456789";
+      
+            while (emptyString.length < length) {
+                emptyString += alphabet[Math.floor(Math.random() * alphabet.length)];
             }
-            for (let i = 0; i < length; i++) {
-              output += chars[Math.floor(Math.random() * chars.length)];
-            }
-            return output;
+            
+            return emptyString;
           };
       
-          const internalID = `FFT${randomString(25)}`;
-          console.log("******** Check bus ID - " + internalID);
+          const randomNum = randomNumber(5);
+          const randomStr = randomString(3);
+
+          const InternalID = `FFTCLI-${randomNum}${randomStr}A`;
+          console.log("******** Check bus ID - " + InternalID);
 
         // DO a double check here:
         const client_user = client_id
@@ -82,7 +96,7 @@ module.exports = {
             business_category,
             business_sub_category,
             discount_info,
-            internalID
+            InternalID
         }
 
         let userEmail = client_email;
@@ -98,6 +112,8 @@ module.exports = {
             subject: `Hello ${username}!  ${business_name} has been created.`,
             text: "Hello there",
             html: `<h1>Hello ${username},</h1>
+                  <p></p>
+                  <p></strong>Ref: InternalID: <strong>${InternalID}</p>
                   <p></p>
                   <p>Am writing to confirm we have received your initial details regarding <strong>${business_name}</strong>, which has been updated onto our system.</p>
                   <p></p>

@@ -1192,6 +1192,15 @@
                 "family_friendly": {
                   "type": "boolean"
                 },
+                "branch_user": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "uid"
+                },
+                "wifi": {
+                  "type": "boolean"
+                },
                 "published_at": {
                   "type": "string"
                 },

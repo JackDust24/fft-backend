@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "02/16/2021 4:56:04 PM"
+    "x-generation-date": "02/26/2021 7:49:04 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -6334,6 +6334,97 @@
           "family_friendly": {
             "type": "boolean"
           },
+          "branch_user": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "can_create_business": {
+                "type": "boolean"
+              },
+              "client": {
+                "type": "string"
+              },
+              "client_created": {
+                "type": "string"
+              },
+              "orders": {
+                "type": "string"
+              },
+              "sales_rep_email": {
+                "type": "string"
+              },
+              "package": {
+                "type": "string"
+              },
+              "packages": {
+                "type": "object"
+              },
+              "free_plan": {
+                "type": "boolean"
+              },
+              "language_pref": {
+                "type": "string"
+              },
+              "numberOfBusinesses": {
+                "type": "integer"
+              },
+              "branches": {
+                "type": "string"
+              },
+              "free_months": {
+                "type": "integer"
+              },
+              "hasPaidQRCode": {
+                "type": "boolean"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "slug": {
+            "type": "uid"
+          },
+          "wifi": {
+            "type": "boolean",
+            "default": false
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -6425,6 +6516,16 @@
           },
           "family_friendly": {
             "type": "boolean"
+          },
+          "branch_user": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "uid"
+          },
+          "wifi": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",
@@ -7435,6 +7536,15 @@
                   "type": "string"
                 },
                 "family_friendly": {
+                  "type": "boolean"
+                },
+                "branch_user": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "uid"
+                },
+                "wifi": {
                   "type": "boolean"
                 },
                 "published_at": {
@@ -9097,6 +9207,15 @@
                 "type": "string"
               },
               "family_friendly": {
+                "type": "boolean"
+              },
+              "branch_user": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "uid"
+              },
+              "wifi": {
                 "type": "boolean"
               },
               "published_at": {

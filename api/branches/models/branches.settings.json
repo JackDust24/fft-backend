@@ -134,6 +134,18 @@
     },
     "family_friendly": {
       "type": "boolean"
+    },
+    "branch_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "branch_name"
+    },
+    "wifi": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

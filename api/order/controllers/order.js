@@ -264,6 +264,7 @@ module.exports = {
       cart,
       language_pref,
       hasPaidQRCode,
+      hasFreePlan,
     } = ctx.request.body;
 
     // 1
@@ -281,10 +282,12 @@ module.exports = {
 
     console.log("**** check QR - ", hasPaidQRCode);
 
+    console.log("**** check Free Plan - ", hasFreePlan);
+
     //2. Part of Omise 3D security, check that the chargeId matches the charge.
 
     // If user has paid by QR this is not needed
-   if (!hasPaidQRCode) {
+   if (!hasPaidQRCode && !hasFreePlan) {
 
     console.log("User has paid through Omise");
 
@@ -310,9 +313,6 @@ module.exports = {
        // throw resp.failure_code;
      }
    });
- 
- 
- 
  
  
      //Check if paymentIntent was not already used to generate an order
@@ -432,19 +432,6 @@ module.exports = {
 
     console.log(created_date);
 
-    // Create Order number:
-/*
-    const randomString = (length) => {
-      let chars = [],
-        output = "";
-      for (let i = 48; i < 57; i++) {
-        chars.push(String.fromCharCode(i));
-      }
-      for (let i = 0; i < length; i++) {
-        output += chars[Math.floor(Math.random() * chars.length)];
-      }
-      return output;
-    }; */
     const randomString = (length) => {
       var emptyString = "";
       var alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ0123456789";
@@ -494,87 +481,142 @@ module.exports = {
 
     console.log("Email went to - " + userEmail);
 
-    if(language_pref === "TH") {
+    // If they paid we want to show the payment.
+    if (!hasFreePlan) {
+      if(language_pref === "TH") {
 
-      try {
-        const send = await strapi.plugins["email"].services.email.send({
-          to: userEmail,
-          cc: sales_rep_email,
-          bcc: "staff@ffthai.com",
-          subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for ${package_type} has been activated.`,
-          text: "Hello there",
-          html: `<h1>Hello ${username},</h1>
-                <p></p>
-                <p>First off, thanks for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
-                <p></p>
-                <p>We can confirm your payment of <strong>฿${price}</strong> has been received and your order number is <strong>${order_reference}</strong>. You can now update your initial details about your business in the business link (on the dashboard). If you are unable to access the screen, please just log in again, the website is currently under construction and <strong>${sales_rep}</strong> can help guide you through when you start uploading data.</p>
-                <p></p>
-                <p>Thank you again, for joining us at Foreigner Friendly Thailand. If you have any questions at all, send a message on to <strong>${sales_rep}</strong> any time and we'll be happy to assist you!</p>
-                <p></p>
-                <p><strong>Price Paid: ฿${price}</strong></p>
-                <p><strong>Tax (included in price): ฿${tax}</strong></p>
-                <p></p>	
-                <p>Best regards,</p>
-                <p></p>
-                <h5>FFThai Support</h5>
-                <p></p>
-                <h2>With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
-          //   <img src="https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing"/>`,
-          //   attachments: [
-          //     {
-          //       filename: 'earlybed_88945d7457.jpg',
-          //       path: path.join(
-          //         __dirname + '/../../../public/uploads/earlybed_88945d7457.jpg'
-          //       ),
-          //       cid: 'https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing'
-          //     }
-          //   ]
-        });
+        try {
+          const send = await strapi.plugins["email"].services.email.send({
+            to: userEmail,
+            cc: sales_rep_email,
+            bcc: "staff@ffthai.com",
+            subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for the ${package_type} has been activated.`,
+            text: "Hello there",
+            html: `<h1>Hello ${username},</h1>
+                  <p></p>
+                  <p>Firstly, thank you for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
+                  <p></p>
+                  <p>We can confirm your payment of <strong>฿${price}</strong> has been received and your order number is <strong>${order_reference}</strong>. You can now add your initial details about your business through the Dashboard. If you are unable to access the screen, please just log in again, the website is currently under construction and <strong>${sales_rep}</strong> can help guide you through when you start uploading data.</p>
+                  <p></p>
+                  <p>Thank you again, for joining us at Foreigner Friendly Thailand. If you have any questions at all, send a message on to <strong>${sales_rep}</strong> any time and we'll be happy to assist you!</p>
+                  <p></p>
+                  <p><strong>Price Paid: ฿${price}</strong></p>
+                  <p><strong>Tax (included in price): ฿${tax}</strong></p>
+                  <p></p>	
+                  <p>Best regards,</p>
+                  <p></p>
+                  <h5>FFThai Support</h5>
+                  <p></p>
+                  <h2>With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+          });
+    
+          console.log("send", send);
+        } catch (err) {
+          console.log("Problem with email job - ", err);
+        }
   
-        console.log("send", send);
-      } catch (err) {
-        console.log("Problem with email job - ", err);
+      } else {
+        try {
+          const send = await strapi.plugins["email"].services.email.send({
+            to: userEmail,
+            cc: sales_rep_email,
+            bcc: "staff@ffthai.com",
+            subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for the ${package_type} has been activated.`,
+            text: "Hello there",
+            html: `<h1>Hello ${username},</h1>
+            <p></p>
+            <p>Firstly, thank you for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
+            <p></p>
+            <p>We can confirm your payment of <strong>฿${price}</strong> has been received and your order number is <strong>${order_reference}</strong>. You can now add your initial details about your business through the Dashboard. If you are unable to access the screen, please just log in again, the website is currently under construction and <strong>${sales_rep}</strong> can help guide you through when you start uploading data.</p>
+            <p></p>
+            <p>Thank you again, for joining us at Foreigner Friendly Thailand. If you have any questions at all, send a message on to <strong>${sales_rep}</strong> any time and we'll be happy to assist you!</p>
+            <p></p>
+            <p><strong>Price Paid: ฿${price}</strong></p>
+            <p><strong>Tax (included in price): ฿${tax}</strong></p>
+            <p></p>	
+                  <p></p>
+                  <h5>FFThai Support</h5>
+                  <p></p>
+                  <h2 style="color:blue;font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+            //   <img src="https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing"/>`,
+            //   attachments: [
+            //     {
+            //       filename: 'earlybed_88945d7457.jpg',
+            //       path: path.join(
+            //         __dirname + '/../../../public/uploads/earlybed_88945d7457.jpg'
+            //       ),
+            //       cid: 'https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing'
+            //     }
+            //   ]
+          });
+    
+          console.log("send", send);
+        } catch (err) {
+          console.log("Problem with email job - ", err);
+        }
       }
-
     } else {
-      try {
-        const send = await strapi.plugins["email"].services.email.send({
-          to: userEmail,
-          cc: sales_rep_email,
-          bcc: "staff@ffthai.com",
-          subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for ${package_type} has been activated.`,
-          text: "Hello there",
-          html: `<h1>Hello ${username},</h1>
-                <p></p>
-                <p>First off, thanks for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
-                <p></p>
-                <p>We can confirm your payment of <strong>฿${price}</strong> has been received and your order number is <strong>${order_reference}</strong>. You can now update your initial details about your business in the business link (on the dashboard). If you are unable to access the screen, please just log in again, the website is currently under construction and <strong>${sales_rep}</strong> can help guide you through when you start uploading data.</p>
-                <p></p>
-                <p>Thank you again for joining us at Foreigner Friendly Thailand. If you have any questions at all, send a message on to ${sales_rep} any time at <strong>${sales_rep}</strong> and wwill be happy to assist you!</p>
-                <p></p>
-                <p></p>	
-                <p>Best regards,</p>
-                <p></p>
-                <h5>FFThai Support</h5>
-                <p></p>
-                <h2 style="color:blue;font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
-          //   <img src="https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing"/>`,
-          //   attachments: [
-          //     {
-          //       filename: 'earlybed_88945d7457.jpg',
-          //       path: path.join(
-          //         __dirname + '/../../../public/uploads/earlybed_88945d7457.jpg'
-          //       ),
-          //       cid: 'https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing'
-          //     }
-          //   ]
-        });
+      // For Free Users
+      if(language_pref === "TH") {
+
+        try {
+          const send = await strapi.plugins["email"].services.email.send({
+            to: userEmail,
+            cc: sales_rep_email,
+            bcc: "staff@ffthai.com",
+            subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for the Free Custom Plan has been activated.`,
+            text: "Hello there",
+            html: `<h1>Hello ${username},</h1>
+                  <p></p>
+                  <p>Firstly, thank you for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
+                  <p></p>
+                  <p>We can confirm that you have signed up to the free plan and can now start adding your details to our system. You can now update your initial details about your business through the Dashboard. If you are unable to access the screen, please just log in again, the website is currently under construction and <strong>${sales_rep}</strong> can help guide you through when you start uploading data.</p>
+                  <p></p>
+                  <p>Thank you again, for joining us at Foreigner Friendly Thailand. If you have any questions at all, send a message on to <strong>${sales_rep}</strong> any time and we'll be happy to assist you!</p>
+                  <p></p>	
+                  <p>Best regards,</p>
+                  <p></p>
+                  <h5>FFThai Support</h5>
+                  <p></p>
+                  <h2>With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+          });
+    
+          console.log("send", send);
+        } catch (err) {
+          console.log("Problem with email job - ", err);
+        }
   
-        console.log("send", send);
-      } catch (err) {
-        console.log("Problem with email job - ", err);
+      } else {
+        try {
+          const send = await strapi.plugins["email"].services.email.send({
+            to: userEmail,
+            cc: sales_rep_email,
+            bcc: "staff@ffthai.com",
+            subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for the Free Custom Plan has been activated.`,
+            text: "Hello there",
+            html: `<h1>Hello ${username},</h1>
+            <p></p>
+            <p>Firstly, thank you for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
+            <p></p>
+            <p>We can confirm that you have signed up to the free plan and can now start adding your details to our system. You can now update your initial details about your business through the Dashboard. If you are unable to access the screen, please just log in again, the website is currently under construction and <strong>${sales_rep}</strong> can help guide you through when you start uploading data.</p>
+            <p></p>
+            <p>Thank you again, for joining us at Foreigner Friendly Thailand. If you have any questions at all, send a message on to <strong>${sales_rep}</strong> any time and we'll be happy to assist you!</p>
+            <p></p>	
+            <p>Best regards,</p>
+            <p></p>
+            <h5>FFThai Support</h5>
+            <p></p>
+            <h2>With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+          });
+    
+          console.log("send", send);
+        } catch (err) {
+          console.log("Problem with email job - ", err);
+        }
       }
     }
+
+   
 
     
 

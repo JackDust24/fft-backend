@@ -20,8 +20,6 @@ module.exports = {
             business_category,
             business_sub_category,
             terms,
-            address,
-            coordinates,
             setup_by,
             client_id,
             discount_info
@@ -35,7 +33,6 @@ module.exports = {
         console.log("clients.create cart ", client_email)
         console.log("clients.create cart ", franchise)
         console.log("clients.create cart ", sales_rep)
-        console.log("clients.create cart ", address, coordinates, setup_by)
         console.log("clients.create cart ", client_id)
         console.log("clients.create cart ", sales_rep_email)
         console.log("clients.create cart ", business_category)
@@ -87,8 +84,6 @@ module.exports = {
             client_email,
             franchise,
             sales_rep,
-            address,
-            coordinates,
             setup_by,
             client_user,
             terms,
@@ -113,7 +108,7 @@ module.exports = {
             text: "Hello there",
             html: `<h1>Hello ${username},</h1>
                   <p></p>
-                  <p></strong>Ref: InternalID: <strong>${InternalID}</p>
+                  <p></strong>Ref: InternalID: <strong>${InternalID}</strong></p>
                   <p></p>
                   <p>Am writing to confirm we have received your initial details regarding <strong>${business_name}</strong>, which has been updated onto our system.</p>
                   <p></p>

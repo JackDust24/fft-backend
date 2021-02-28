@@ -43,25 +43,27 @@ module.exports = {
         let District = data.district;
         let Province = data.province;
         let postCode = data.postCode;
+        let location = data.location;
         let Fair_pricing = data.fftBool;
         let Date_created = created_date;
         let English_speaking = data.englishBool;
         let Parking = data.parkingBool;
         let family_friendly = data.familyBool;
+        let wifi = data.wifiBool;
         let website_url = data.website;
         let social_media_fb = data.facebook;
         let social_media_instagram = data.instagram;
         let branch_description_small = data.smDescription;
         let branch_description_long = data.lgDescription;
+        let Discount_alt = data.discount;
         // let branch_logo = data.logo;
         // let main_image = 'Have to agree the docs are poor. Knowing how to upload a file from React to a new entry into a content type has got me stumped all day. Still stuck.'
 
         let client = clientId;
-        let user = userId;
+        let branch_user = userId;
 
         console.log("Check called category ", data.category)
         console.log("Check called district ", data.district)
-
 
         const entry = {
             client_name,
@@ -80,26 +82,23 @@ module.exports = {
             English_speaking,
             Parking,
             family_friendly,
+            wifi,
+            location,
             Branch_phone,
             website_url,
             social_media_fb,
             social_media_instagram,
             branch_description_small,
             branch_description_long,
+            Discount_alt,
             // branch_logo,
             // main_image,
-            user
+            branch_user
         }
 
         console.log("Create entity")
 
-
         const entity = await strapi.services.branches.create(entry);
-
-        console.log("Create entity 2")
-
-        // return entity
-
         return sanitizeEntity(entity, { model: strapi.models.branches })
     }
 };

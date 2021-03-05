@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "02/26/2021 7:49:04 PM"
+    "x-generation-date": "03/04/2021 11:21:28 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -6013,13 +6013,16 @@
             "type": "string"
           },
           "English_speaking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Fair_pricing": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "Parking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Date_created": {
             "type": "string",
@@ -6425,6 +6428,13 @@
             "type": "boolean",
             "default": false
           },
+          "phone": {
+            "type": "integer"
+          },
+          "discount_info": {
+            "type": "string",
+            "default": "This discount applies to all our members."
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -6470,13 +6480,16 @@
             "type": "string"
           },
           "English_speaking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Fair_pricing": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "Parking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Date_created": {
             "type": "string",
@@ -6526,6 +6539,13 @@
           "wifi": {
             "type": "boolean",
             "default": false
+          },
+          "phone": {
+            "type": "integer"
+          },
+          "discount_info": {
+            "type": "string",
+            "default": "This discount applies to all our members."
           },
           "published_at": {
             "type": "string",
@@ -7546,6 +7566,12 @@
                 },
                 "wifi": {
                   "type": "boolean"
+                },
+                "phone": {
+                  "type": "integer"
+                },
+                "discount_info": {
+                  "type": "string"
                 },
                 "published_at": {
                   "type": "string"
@@ -9217,6 +9243,12 @@
               },
               "wifi": {
                 "type": "boolean"
+              },
+              "phone": {
+                "type": "integer"
+              },
+              "discount_info": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"

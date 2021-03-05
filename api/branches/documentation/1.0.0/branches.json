@@ -718,13 +718,16 @@
             "type": "string"
           },
           "English_speaking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Fair_pricing": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "Parking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Date_created": {
             "type": "string",
@@ -1130,6 +1133,13 @@
             "type": "boolean",
             "default": false
           },
+          "phone": {
+            "type": "integer"
+          },
+          "discount_info": {
+            "type": "string",
+            "default": "This discount applies to all our members."
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1175,13 +1185,16 @@
             "type": "string"
           },
           "English_speaking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Fair_pricing": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": true
           },
           "Parking": {
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           "Date_created": {
             "type": "string",
@@ -1231,6 +1244,13 @@
           "wifi": {
             "type": "boolean",
             "default": false
+          },
+          "phone": {
+            "type": "integer"
+          },
+          "discount_info": {
+            "type": "string",
+            "default": "This discount applies to all our members."
           },
           "published_at": {
             "type": "string",

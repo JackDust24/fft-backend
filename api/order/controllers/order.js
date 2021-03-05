@@ -444,14 +444,8 @@ module.exports = {
     }; 
 
     const random = randomString(12);
-
     const order_reference = `FFTOD-${random}`
-
     console.log(order_reference);
-
-       // See what orders are found:
-    // const alreadyExistingOrder = await strapi.query('order').find({ 
-    //   _sort: 'created_date' });
 
     // 3 TO DO - Add packages chosen and username
     const entry = {
@@ -479,7 +473,8 @@ module.exports = {
 
     let userEmail = user_email;
 
-    console.log("Email went to - " + userEmail);
+    // The colour we will use.
+    var fftGreen = "rgba(28, 219, 104)"; 
 
     // If they paid we want to show the payment.
     if (!hasFreePlan) {
@@ -492,7 +487,7 @@ module.exports = {
             bcc: "staff@ffthai.com",
             subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for the ${package_type} has been activated.`,
             text: "Hello there",
-            html: `<h1>Hello ${username},</h1>
+            html: `<h1 style="color:${fftGreen};">Hello ${username},</h1>
                   <p></p>
                   <p>Firstly, thank you for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
                   <p></p>
@@ -507,7 +502,7 @@ module.exports = {
                   <p></p>
                   <h5>FFThai Support</h5>
                   <p></p>
-                  <h2>With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+                  <h2 style="color:${fftGreen};font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
           });
     
           console.log("send", send);
@@ -523,7 +518,7 @@ module.exports = {
             bcc: "staff@ffthai.com",
             subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for the ${package_type} has been activated.`,
             text: "Hello there",
-            html: `<h1>Hello ${username},</h1>
+            html: `<h1 style="color:${fftGreen};">Hello ${username},</h1>
             <p></p>
             <p>Firstly, thank you for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
             <p></p>
@@ -537,7 +532,7 @@ module.exports = {
                   <p></p>
                   <h5>FFThai Support</h5>
                   <p></p>
-                  <h2 style="color:blue;font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+                  <h2 style="color:${fftGreen};font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
             //   <img src="https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing"/>`,
             //   attachments: [
             //     {
@@ -566,7 +561,7 @@ module.exports = {
             bcc: "staff@ffthai.com",
             subject: `Welcome ${username}! Your Foreigner Friendly Thailand package for the Free Custom Plan has been activated.`,
             text: "Hello there",
-            html: `<h1>Hello ${username},</h1>
+            html: `<h1 style="color:${fftGreen};">Hello ${username},</h1>
                   <p></p>
                   <p>Firstly, thank you for your interest in Foreigner Friendly Thailand! <strong>${sales_rep}</strong>, will help guide you through the first steps of your setup.</p>
                   <p></p>
@@ -578,7 +573,7 @@ module.exports = {
                   <p></p>
                   <h5>FFThai Support</h5>
                   <p></p>
-                  <h2>With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+                  <h2 style="color:${fftGreen};font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
           });
     
           console.log("send", send);

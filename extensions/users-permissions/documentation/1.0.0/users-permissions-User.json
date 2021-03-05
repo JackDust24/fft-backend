@@ -1713,6 +1713,12 @@
               "wifi": {
                 "type": "boolean"
               },
+              "phone": {
+                "type": "integer"
+              },
+              "discount_info": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

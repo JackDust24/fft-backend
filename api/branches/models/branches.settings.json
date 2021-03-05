@@ -47,13 +47,16 @@
       "type": "string"
     },
     "English_speaking": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "Fair_pricing": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "Parking": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "Date_created": {
       "type": "date"
@@ -146,6 +149,13 @@
     "wifi": {
       "type": "boolean",
       "default": false
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "discount_info": {
+      "type": "string",
+      "default": "This discount applies to all our members."
     }
   }
 }

@@ -98,6 +98,9 @@ module.exports = {
         let username = setup_by;
 
         console.log("Email went to - " + userEmail);
+
+        // The colour we will use.
+        var fftGreen = "rgba(28, 219, 104)"; 
     
         try {
           const send = await strapi.plugins["email"].services.email.send({
@@ -106,7 +109,7 @@ module.exports = {
             bcc: "staff@ffthai.com",
             subject: `Hello ${username}!  ${business_name} has been created.`,
             text: "Hello there",
-            html: `<h1>Hello ${username},</h1>
+            html: `<h1 style="color:${fftGreen};">Hello ${username},</h1>
                   <p></p>
                   <p></strong>Ref: InternalID: <strong>${InternalID}</strong></p>
                   <p></p>
@@ -120,7 +123,7 @@ module.exports = {
                   <p></p>
                   <h5>FFThai Support</h5>
                   <p></p>
-                  <h2 style="color:blue;font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+                  <h2 style="color:${fftGreen};font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
             //   <img src="https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing"/>`,
             //   attachments: [
             //     {
@@ -139,9 +142,6 @@ module.exports = {
         }
     
         const entity = await strapi.services.clients.create(entry);
-
-        // return entity
-
         return sanitizeEntity(entity, { model: strapi.models.clients })
 
     }

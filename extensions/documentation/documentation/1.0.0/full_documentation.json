@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "03/04/2021 11:21:28 AM"
+    "x-generation-date": "03/13/2021 3:37:40 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5974,6 +5974,12 @@
                   "type": "string"
                 }
               },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "membership_start": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -6435,6 +6441,10 @@
             "type": "string",
             "default": "This discount applies to all our members."
           },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -6546,6 +6556,10 @@
           "discount_info": {
             "type": "string",
             "default": "This discount applies to all our members."
+          },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",
@@ -6804,6 +6818,12 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "membership_start": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"
@@ -7573,6 +7593,9 @@
                 "discount_info": {
                   "type": "string"
                 },
+                "premium_membership": {
+                  "type": "boolean"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -7584,6 +7607,15 @@
                 }
               }
             }
+          },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
+          },
+          "membership_start": {
+            "type": "string",
+            "format": "date",
+            "default": "2021-06-01T05:00:00.000Z"
           },
           "published_at": {
             "type": "string",
@@ -7726,6 +7758,15 @@
             "items": {
               "type": "string"
             }
+          },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
+          },
+          "membership_start": {
+            "type": "string",
+            "format": "date",
+            "default": "2021-06-01T05:00:00.000Z"
           },
           "published_at": {
             "type": "string",
@@ -8366,6 +8407,15 @@
             "type": "string",
             "default": "package"
           },
+          "fft_package": {
+            "type": "string",
+            "default": "Standard",
+            "enum": [
+              "Premium",
+              "Standard",
+              "Other"
+            ]
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -8434,6 +8484,15 @@
           "type": {
             "type": "string",
             "default": "package"
+          },
+          "fft_package": {
+            "type": "string",
+            "default": "Standard",
+            "enum": [
+              "Premium",
+              "Standard",
+              "Other"
+            ]
           },
           "published_at": {
             "type": "string",
@@ -8939,6 +8998,12 @@
                   "type": "string"
                 }
               },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "membership_start": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -9100,6 +9165,9 @@
               "type": {
                 "type": "string"
               },
+              "fft_package": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -9249,6 +9317,9 @@
               },
               "discount_info": {
                 "type": "string"
+              },
+              "premium_membership": {
+                "type": "boolean"
               },
               "published_at": {
                 "type": "string"

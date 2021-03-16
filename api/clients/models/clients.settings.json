@@ -193,6 +193,14 @@
     "branches": {
       "via": "client",
       "collection": "branches"
+    },
+    "premium_membership": {
+      "type": "boolean",
+      "default": false
+    },
+    "membership_start": {
+      "type": "date",
+      "default": "2021-06-01T05:00:00.000Z"
     }
   }
 }

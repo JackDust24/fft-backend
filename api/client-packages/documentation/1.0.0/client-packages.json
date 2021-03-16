@@ -773,6 +773,12 @@
                   "type": "string"
                 }
               },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "membership_start": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

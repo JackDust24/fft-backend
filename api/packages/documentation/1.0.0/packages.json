@@ -581,6 +581,15 @@
             "type": "string",
             "default": "package"
           },
+          "fft_package": {
+            "type": "string",
+            "default": "Standard",
+            "enum": [
+              "Premium",
+              "Standard",
+              "Other"
+            ]
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -649,6 +658,15 @@
           "type": {
             "type": "string",
             "default": "package"
+          },
+          "fft_package": {
+            "type": "string",
+            "default": "Standard",
+            "enum": [
+              "Premium",
+              "Standard",
+              "Other"
+            ]
           },
           "published_at": {
             "type": "string",

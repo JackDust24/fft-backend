@@ -156,6 +156,10 @@
     "discount_info": {
       "type": "string",
       "default": "This discount applies to all our members."
+    },
+    "premium_membership": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

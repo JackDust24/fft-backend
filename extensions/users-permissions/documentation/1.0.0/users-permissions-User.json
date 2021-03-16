@@ -1408,6 +1408,12 @@
                   "type": "string"
                 }
               },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "membership_start": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -1569,6 +1575,9 @@
               "type": {
                 "type": "string"
               },
+              "fft_package": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -1718,6 +1727,9 @@
               },
               "discount_info": {
                 "type": "string"
+              },
+              "premium_membership": {
+                "type": "boolean"
               },
               "published_at": {
                 "type": "string"

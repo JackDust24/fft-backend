@@ -679,6 +679,12 @@
                   "type": "string"
                 }
               },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "membership_start": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -1140,6 +1146,10 @@
             "type": "string",
             "default": "This discount applies to all our members."
           },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1251,6 +1261,10 @@
           "discount_info": {
             "type": "string",
             "default": "This discount applies to all our members."
+          },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",

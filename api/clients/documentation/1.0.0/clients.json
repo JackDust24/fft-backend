@@ -1207,6 +1207,9 @@
                 "discount_info": {
                   "type": "string"
                 },
+                "premium_membership": {
+                  "type": "boolean"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -1218,6 +1221,15 @@
                 }
               }
             }
+          },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
+          },
+          "membership_start": {
+            "type": "string",
+            "format": "date",
+            "default": "2021-06-01T05:00:00.000Z"
           },
           "published_at": {
             "type": "string",
@@ -1360,6 +1372,15 @@
             "items": {
               "type": "string"
             }
+          },
+          "premium_membership": {
+            "type": "boolean",
+            "default": false
+          },
+          "membership_start": {
+            "type": "string",
+            "format": "date",
+            "default": "2021-06-01T05:00:00.000Z"
           },
           "published_at": {
             "type": "string",

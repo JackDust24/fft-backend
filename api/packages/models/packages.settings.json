@@ -70,6 +70,15 @@
     "type": {
       "type": "string",
       "default": "package"
+    },
+    "fft_package": {
+      "type": "enumeration",
+      "enum": [
+        "Premium",
+        "Standard",
+        "Other"
+      ],
+      "default": "Standard"
     }
   }
 }

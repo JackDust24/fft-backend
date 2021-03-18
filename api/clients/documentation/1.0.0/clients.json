@@ -1210,6 +1210,9 @@
                 "premium_membership": {
                   "type": "boolean"
                 },
+                "branch_number": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },

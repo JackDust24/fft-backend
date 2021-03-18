@@ -32,8 +32,6 @@ module.exports = {
         console.log("Backend called userId ", userId)
         console.log("Backend called membership_premium ", membership_premium)
 
-
-
        let created_date = new Date();
 
        console.log(created_date);
@@ -41,7 +39,7 @@ module.exports = {
         let client_name = data.name; // We will remove this soon and only have branch name.
         let branch_name = data.name;
         let Branch_contact = data.email;
-        let phone = data.phone;
+        let branch_number = data.phone;
         let Category = data.category;
         let Sub_category = data.subCategory;
         let Address_line_1 = data.address1;
@@ -85,7 +83,7 @@ module.exports = {
             postCode,
             Date_created,
             location,
-            phone,
+            branch_number,
             website_url,
             social_media_fb,
             social_media_instagram,

@@ -1150,6 +1150,9 @@
             "type": "boolean",
             "default": false
           },
+          "branch_number": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1265,6 +1268,9 @@
           "premium_membership": {
             "type": "boolean",
             "default": false
+          },
+          "branch_number": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

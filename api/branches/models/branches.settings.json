@@ -160,6 +160,9 @@
     "premium_membership": {
       "type": "boolean",
       "default": false
+    },
+    "branch_number": {
+      "type": "string"
     }
   }
 }

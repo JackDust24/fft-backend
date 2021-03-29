@@ -27,6 +27,11 @@ module.exports = {
         console.log("Backend called category ", data.category)
         console.log("Backend called district ", data.district)
         console.log("Backend called Image ", data.mainImage)
+        console.log("Backend called phone ", data.phone)
+        console.log("Backend called discount ", data.discount)
+        console.log("Backend called businessDiscount ", data.businessDiscount)
+
+
 
         console.log("Backend called clientId ", clientId)
         console.log("Backend called userId ", userId)
@@ -59,7 +64,8 @@ module.exports = {
         let social_media_instagram = data.instagram;
         let branch_description_small = data.smDescription;
         let branch_description_long = data.lgDescription;
-        let Discount_alt = data.discount;
+        let Discount_alt = data.discount;  // This is the discount at branch level
+        let Discount = data.businessDiscount; // This is the discount at business level
         let client = clientId;
         let branch_user = userId;
         let premium_membership = membership_premium
@@ -89,6 +95,7 @@ module.exports = {
             social_media_instagram,
             branch_description_small,
             branch_description_long,
+            Discount,
             Discount_alt,
             branch_user,
             premium_membership,

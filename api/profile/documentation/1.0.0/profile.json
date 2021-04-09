@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/packages": {
+    "/profiles": {
       "get": {
         "deprecated": false,
-        "description": "Find all the packages's records",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Packages"
+                    "$ref": "#/components/schemas/Profile"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Profile"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new packages record",
+        "description": "Create a new record",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Packages"
+                  "$ref": "#/components/schemas/Profile"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Profile"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPackages"
+                "$ref": "#/components/schemas/NewProfile"
               }
             }
           }
         }
       }
     },
-    "/packages/count": {
+    "/profiles/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of packages documents",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Profile"
         ],
         "parameters": []
       }
     },
-    "/packages/{id}": {
+    "/profiles/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one packages record",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Packages"
+                  "$ref": "#/components/schemas/Profile"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Profile"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single packages record",
+        "description": "Update a record",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Packages"
+                  "$ref": "#/components/schemas/Profile"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Profile"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPackages"
+                "$ref": "#/components/schemas/NewProfile"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single packages record",
+        "description": "Delete a record",
         "responses": {
           "200": {
-            "description": "deletes a single packages based on the ID supplied",
+            "description": "deletes a single record based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Profile"
         ],
         "parameters": [
           {
@@ -514,92 +514,173 @@
   },
   "components": {
     "schemas": {
-      "Packages": {
+      "Profile": {
         "required": [
           "id",
-          "name",
-          "price"
+          "profile_role"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "name": {
-            "type": "string"
+          "profile_image": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
-          "description": {
-            "type": "string"
-          },
-          "price": {
-            "type": "integer"
-          },
-          "name_th": {
-            "type": "string"
-          },
-          "description_th": {
-            "type": "string"
-          },
-          "customplan": {
-            "type": "boolean",
-            "default": false
-          },
-          "lengthOfPackage": {
-            "type": "integer",
-            "default": 6
-          },
-          "amount": {
-            "type": "number"
-          },
-          "tax": {
-            "type": "integer",
-            "default": 0
-          },
-          "vat": {
-            "type": "integer",
-            "default": 0
-          },
-          "slug": {
-            "type": "uid"
-          },
-          "promotions": {
-            "type": "integer",
-            "default": 0
-          },
-          "free_months": {
-            "type": "integer",
-            "default": 0
-          },
-          "image_url": {
+          "profile_role": {
             "type": "string",
-            "default": "https://s22.postimg.cc/8mv5gn7w1/paper-plane.png"
-          },
-          "display_order": {
-            "type": "integer",
-            "default": 999
-          },
-          "type": {
-            "type": "string",
-            "default": "package"
-          },
-          "fft_package": {
-            "type": "string",
-            "default": "Standard",
+            "default": "member",
             "enum": [
-              "Premium",
-              "Standard",
-              "Other"
+              "member",
+              "client"
             ]
           },
-          "discounted_package": {
-            "type": "boolean",
-            "default": false
-          },
-          "discount_available": {
-            "type": "string"
-          },
-          "original_price_before_discount": {
-            "type": "integer",
-            "default": 0
+          "users_permissions_user": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "can_create_business": {
+                "type": "boolean"
+              },
+              "client": {
+                "type": "string"
+              },
+              "client_created": {
+                "type": "string"
+              },
+              "orders": {
+                "type": "string"
+              },
+              "sales_rep_email": {
+                "type": "string"
+              },
+              "package": {
+                "type": "string"
+              },
+              "packages": {
+                "type": "object"
+              },
+              "free_plan": {
+                "type": "boolean"
+              },
+              "language_pref": {
+                "type": "string"
+              },
+              "numberOfBusinesses": {
+                "type": "integer"
+              },
+              "branches": {
+                "type": "string"
+              },
+              "free_months": {
+                "type": "integer"
+              },
+              "hasPaidQRCode": {
+                "type": "boolean"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
           "published_at": {
             "type": "string",
@@ -607,88 +688,21 @@
           }
         }
       },
-      "NewPackages": {
+      "NewProfile": {
         "required": [
-          "name",
-          "price"
+          "profile_role"
         ],
         "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "price": {
-            "type": "integer"
-          },
-          "name_th": {
-            "type": "string"
-          },
-          "description_th": {
-            "type": "string"
-          },
-          "customplan": {
-            "type": "boolean",
-            "default": false
-          },
-          "lengthOfPackage": {
-            "type": "integer",
-            "default": 6
-          },
-          "amount": {
-            "type": "number"
-          },
-          "tax": {
-            "type": "integer",
-            "default": 0
-          },
-          "vat": {
-            "type": "integer",
-            "default": 0
-          },
-          "slug": {
-            "type": "uid"
-          },
-          "promotions": {
-            "type": "integer",
-            "default": 0
-          },
-          "free_months": {
-            "type": "integer",
-            "default": 0
-          },
-          "image_url": {
+          "profile_role": {
             "type": "string",
-            "default": "https://s22.postimg.cc/8mv5gn7w1/paper-plane.png"
-          },
-          "display_order": {
-            "type": "integer",
-            "default": 999
-          },
-          "type": {
-            "type": "string",
-            "default": "package"
-          },
-          "fft_package": {
-            "type": "string",
-            "default": "Standard",
+            "default": "member",
             "enum": [
-              "Premium",
-              "Standard",
-              "Other"
+              "member",
+              "client"
             ]
           },
-          "discounted_package": {
-            "type": "boolean",
-            "default": false
-          },
-          "discount_available": {
+          "users_permissions_user": {
             "type": "string"
-          },
-          "original_price_before_discount": {
-            "type": "integer",
-            "default": 0
           },
           "published_at": {
             "type": "string",
@@ -706,7 +720,7 @@
   },
   "tags": [
     {
-      "name": "Packages"
+      "name": "Profile"
     }
   ]
 }

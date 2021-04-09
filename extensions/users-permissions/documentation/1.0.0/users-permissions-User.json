@@ -1578,6 +1578,15 @@
               "fft_package": {
                 "type": "string"
               },
+              "discounted_package": {
+                "type": "boolean"
+              },
+              "discount_available": {
+                "type": "string"
+              },
+              "original_price_before_discount": {
+                "type": "integer"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -1732,6 +1741,12 @@
                 "type": "boolean"
               },
               "branch_number": {
+                "type": "string"
+              },
+              "qr_image": {
+                "type": "string"
+              },
+              "discount_image": {
                 "type": "string"
               },
               "published_at": {

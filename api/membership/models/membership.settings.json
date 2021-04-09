@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "memberships",
+  "info": {
+    "name": "Membership"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "membership_id": {
+      "type": "string"
+    },
+    "created_date": {
+      "type": "datetime"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "live": {
+      "type": "boolean"
+    },
+    "membership_role": {
+      "type": "enumeration",
+      "enum": [
+        "client",
+        "member"
+      ],
+      "required": true
+    },
+    "expired": {
+      "type": "boolean",
+      "default": false
+    },
+    "order": {
+      "model": "order"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "reminder_sent": {
+      "type": "boolean"
+    }
+  }
+}

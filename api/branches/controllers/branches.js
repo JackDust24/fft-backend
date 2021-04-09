@@ -1,7 +1,6 @@
 'use strict';
 const { sanitizeEntity } = require("strapi-utils");
 
-
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
  * to customize this controller
@@ -21,18 +20,13 @@ module.exports = {
         } = ctx.request.body
 
         console.log("Backend called = ", ctx.request.body)
-
         console.log("Backend called data ", data)
         console.log("Backend called name ", data.name)
         console.log("Backend called category ", data.category)
         console.log("Backend called district ", data.district)
-        console.log("Backend called Image ", data.mainImage)
         console.log("Backend called phone ", data.phone)
         console.log("Backend called discount ", data.discount)
         console.log("Backend called businessDiscount ", data.businessDiscount)
-
-
-
         console.log("Backend called clientId ", clientId)
         console.log("Backend called userId ", userId)
         console.log("Backend called membership_premium ", membership_premium)
@@ -54,11 +48,6 @@ module.exports = {
         let postCode = data.postCode;
         let location = data.location;
         let Date_created = created_date;
-        // let Fair_pricing = data.fftBool;
-        // let English_speaking = data.englishBool;
-        // let Parking = data.parkingBool;
-        // let family_friendly = data.familyBool;
-        // let wifi = data.wifiBool;
         let website_url = data.website;
         let social_media_fb = data.facebook;
         let social_media_instagram = data.instagram;
@@ -69,8 +58,6 @@ module.exports = {
         let client = clientId;
         let branch_user = userId;
         let premium_membership = membership_premium
-        // let branch_logo = data.logo;
-        // let main_image = 'Have to agree the docs are poor. Knowing how to upload a file from React to a new entry into a content type has got me stumped all day. Still stuck.'
 
         console.log("Check called category ", data.category)
         console.log("Check called district ", data.district)
@@ -99,11 +86,6 @@ module.exports = {
             Discount_alt,
             branch_user,
             premium_membership,
-                       // Fair_pricing,
-            // English_speaking,
-            // Parking,
-            // family_friendly,
-            // wifi,
         }
 
         console.log("Create entity")

@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/packages": {
+    "/memberships": {
       "get": {
         "deprecated": false,
-        "description": "Find all the packages's records",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Packages"
+                    "$ref": "#/components/schemas/Membership"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Membership"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new packages record",
+        "description": "Create a new record",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Packages"
+                  "$ref": "#/components/schemas/Membership"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Membership"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPackages"
+                "$ref": "#/components/schemas/NewMembership"
               }
             }
           }
         }
       }
     },
-    "/packages/count": {
+    "/memberships/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of packages documents",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Membership"
         ],
         "parameters": []
       }
     },
-    "/packages/{id}": {
+    "/memberships/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one packages record",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Packages"
+                  "$ref": "#/components/schemas/Membership"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Membership"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single packages record",
+        "description": "Update a record",
         "responses": {
           "200": {
-            "description": "Retrieve packages document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Packages"
+                  "$ref": "#/components/schemas/Membership"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Membership"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPackages"
+                "$ref": "#/components/schemas/NewMembership"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single packages record",
+        "description": "Delete a record",
         "responses": {
           "200": {
-            "description": "deletes a single packages based on the ID supplied",
+            "description": "deletes a single record based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Packages"
+          "Membership"
         ],
         "parameters": [
           {
@@ -514,92 +514,215 @@
   },
   "components": {
     "schemas": {
-      "Packages": {
+      "Membership": {
         "required": [
           "id",
-          "name",
-          "price"
+          "membership_role"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "name": {
+          "membership_id": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
-          "price": {
-            "type": "integer"
-          },
-          "name_th": {
-            "type": "string"
-          },
-          "description_th": {
-            "type": "string"
-          },
-          "customplan": {
-            "type": "boolean",
-            "default": false
-          },
-          "lengthOfPackage": {
-            "type": "integer",
-            "default": 6
-          },
-          "amount": {
-            "type": "number"
-          },
-          "tax": {
-            "type": "integer",
-            "default": 0
-          },
-          "vat": {
-            "type": "integer",
-            "default": 0
-          },
-          "slug": {
-            "type": "uid"
-          },
-          "promotions": {
-            "type": "integer",
-            "default": 0
-          },
-          "free_months": {
-            "type": "integer",
-            "default": 0
-          },
-          "image_url": {
+          "created_date": {
             "type": "string",
-            "default": "https://s22.postimg.cc/8mv5gn7w1/paper-plane.png"
+            "format": "date-time"
           },
-          "display_order": {
-            "type": "integer",
-            "default": 999
-          },
-          "type": {
+          "start_date": {
             "type": "string",
-            "default": "package"
+            "format": "date"
           },
-          "fft_package": {
+          "end_date": {
             "type": "string",
-            "default": "Standard",
+            "format": "date"
+          },
+          "live": {
+            "type": "boolean"
+          },
+          "membership_role": {
+            "type": "string",
             "enum": [
-              "Premium",
-              "Standard",
-              "Other"
+              "client",
+              "member"
             ]
           },
-          "discounted_package": {
+          "expired": {
             "type": "boolean",
             "default": false
           },
-          "discount_available": {
-            "type": "string"
+          "order": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "order_name": {
+                "type": "string"
+              },
+              "price": {
+                "type": "integer"
+              },
+              "payment_intent_id": {
+                "type": "string"
+              },
+              "lengthOfPackage": {
+                "type": "integer"
+              },
+              "amount": {
+                "type": "number"
+              },
+              "free_months": {
+                "type": "integer"
+              },
+              "tax": {
+                "type": "integer"
+              },
+              "vat": {
+                "type": "integer"
+              },
+              "created_date": {
+                "type": "string"
+              },
+              "sales_rep": {
+                "type": "string"
+              },
+              "sales_rep_link": {
+                "type": "string"
+              },
+              "users_permissions_user": {
+                "type": "string"
+              },
+              "payment_type": {
+                "type": "string"
+              },
+              "order_ID": {
+                "type": "uid"
+              },
+              "customplan": {
+                "type": "boolean"
+              },
+              "package_type": {
+                "type": "string"
+              },
+              "business_name": {
+                "type": "string"
+              },
+              "business_username": {
+                "type": "string"
+              },
+              "order_reference": {
+                "type": "string"
+              },
+              "sales_rep_email": {
+                "type": "string"
+              },
+              "user_email": {
+                "type": "string"
+              },
+              "order_type": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
-          "original_price_before_discount": {
-            "type": "integer",
-            "default": 0
+          "users_permissions_user": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "can_create_business": {
+                "type": "boolean"
+              },
+              "client": {
+                "type": "string"
+              },
+              "client_created": {
+                "type": "string"
+              },
+              "orders": {
+                "type": "string"
+              },
+              "sales_rep_email": {
+                "type": "string"
+              },
+              "package": {
+                "type": "string"
+              },
+              "packages": {
+                "type": "object"
+              },
+              "free_plan": {
+                "type": "boolean"
+              },
+              "language_pref": {
+                "type": "string"
+              },
+              "numberOfBusinesses": {
+                "type": "integer"
+              },
+              "branches": {
+                "type": "string"
+              },
+              "free_months": {
+                "type": "integer"
+              },
+              "hasPaidQRCode": {
+                "type": "boolean"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "reminder_sent": {
+            "type": "boolean"
           },
           "published_at": {
             "type": "string",
@@ -607,88 +730,48 @@
           }
         }
       },
-      "NewPackages": {
+      "NewMembership": {
         "required": [
-          "name",
-          "price"
+          "membership_role"
         ],
         "properties": {
-          "name": {
+          "membership_id": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
-          "price": {
-            "type": "integer"
-          },
-          "name_th": {
-            "type": "string"
-          },
-          "description_th": {
-            "type": "string"
-          },
-          "customplan": {
-            "type": "boolean",
-            "default": false
-          },
-          "lengthOfPackage": {
-            "type": "integer",
-            "default": 6
-          },
-          "amount": {
-            "type": "number"
-          },
-          "tax": {
-            "type": "integer",
-            "default": 0
-          },
-          "vat": {
-            "type": "integer",
-            "default": 0
-          },
-          "slug": {
-            "type": "uid"
-          },
-          "promotions": {
-            "type": "integer",
-            "default": 0
-          },
-          "free_months": {
-            "type": "integer",
-            "default": 0
-          },
-          "image_url": {
+          "created_date": {
             "type": "string",
-            "default": "https://s22.postimg.cc/8mv5gn7w1/paper-plane.png"
+            "format": "date-time"
           },
-          "display_order": {
-            "type": "integer",
-            "default": 999
-          },
-          "type": {
+          "start_date": {
             "type": "string",
-            "default": "package"
+            "format": "date"
           },
-          "fft_package": {
+          "end_date": {
             "type": "string",
-            "default": "Standard",
+            "format": "date"
+          },
+          "live": {
+            "type": "boolean"
+          },
+          "membership_role": {
+            "type": "string",
             "enum": [
-              "Premium",
-              "Standard",
-              "Other"
+              "client",
+              "member"
             ]
           },
-          "discounted_package": {
+          "expired": {
             "type": "boolean",
             "default": false
           },
-          "discount_available": {
+          "order": {
             "type": "string"
           },
-          "original_price_before_discount": {
-            "type": "integer",
-            "default": 0
+          "users_permissions_user": {
+            "type": "string"
+          },
+          "reminder_sent": {
+            "type": "boolean"
           },
           "published_at": {
             "type": "string",
@@ -706,7 +789,7 @@
   },
   "tags": [
     {
-      "name": "Packages"
+      "name": "Membership"
     }
   ]
 }

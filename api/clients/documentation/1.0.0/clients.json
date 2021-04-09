@@ -1213,6 +1213,12 @@
                 "branch_number": {
                   "type": "string"
                 },
+                "qr_image": {
+                  "type": "string"
+                },
+                "discount_image": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },

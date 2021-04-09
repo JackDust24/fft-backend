@@ -79,6 +79,17 @@
         "Other"
       ],
       "default": "Standard"
+    },
+    "discounted_package": {
+      "type": "boolean",
+      "default": false
+    },
+    "discount_available": {
+      "type": "string"
+    },
+    "original_price_before_discount": {
+      "type": "integer",
+      "default": 0
     }
   }
 }

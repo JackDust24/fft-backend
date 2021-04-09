@@ -21,155 +21,159 @@ require(`dotenv`).config()
  */
 
 module.exports = {
-  setUpStripe: async (ctx) => {
-    let total = 100;
-    let validatedCart = [];
-    let receiptCart = [];
 
-    // Set up what we will be sengding to Stripe
-    const { cart } = ctx.request.body;
-    let customPlan = cart["0"].customplan;
-    let customer = "";
-    let customer_email = "";
-    let sales_rep_email = "";
+  // Stripe no longer being used.
+  /*
+  // setUpStripe: async (ctx) => {
+  //   let total = 100;
+  //   let validatedCart = [];
+  //   let receiptCart = [];
 
-    console.log("***** Did Test go through? Customer? ", cart["0"].customer);
-    console.log(
-      "***** Did Test go through? Customer? ",
-      cart["0"].customer_email
-    );
-    console.log(
-      "***** Did Test go through? Sales Rep? ",
-      cart["0"].sales_rep_email
-    );
+  //   // Set up what we will be sengding to Stripe
+  //   const { cart } = ctx.request.body;
+  //   let customPlan = cart["0"].customplan;
+  //   let customer = "";
+  //   let customer_email = "";
+  //   let sales_rep_email = "";
 
-    // Set up in case, none of this info was received
-    if (cart["0"].customer === undefined) {
-      customer = "No Customer Name went through";
-    } else {
-      customer = cart["0"].customer;
-    }
+  //   console.log("***** Did Test go through? Customer? ", cart["0"].customer);
+  //   console.log(
+  //     "***** Did Test go through? Customer? ",
+  //     cart["0"].customer_email
+  //   );
+  //   console.log(
+  //     "***** Did Test go through? Sales Rep? ",
+  //     cart["0"].sales_rep_email
+  //   );
 
-    if (cart["0"].sales_rep_email === undefined) {
-      sales_rep_email = "No Sales Rep Allocated";
-    } else {
-      sales_rep_email = cart["0"].sales_rep_email;
-    }
+  //   // Set up in case, none of this info was received
+  //   if (cart["0"].customer === undefined) {
+  //     customer = "No Customer Name went through";
+  //   } else {
+  //     customer = cart["0"].customer;
+  //   }
 
-    if (cart["0"].customer_email === undefined) {
-      customer_email = "staff@ffthai.com";
-    } else {
-      customer_email = cart["0"].customer_email;
-    }
+  //   if (cart["0"].sales_rep_email === undefined) {
+  //     sales_rep_email = "No Sales Rep Allocated";
+  //   } else {
+  //     sales_rep_email = cart["0"].sales_rep_email;
+  //   }
 
-    if (customPlan == true) {
-      console.log("Custom Plan = true");
-    } else {
-      console.log("Custom Plan = NOT true");
-    }
+  //   if (cart["0"].customer_email === undefined) {
+  //     customer_email = "staff@ffthai.com";
+  //   } else {
+  //     customer_email = cart["0"].customer_email;
+  //   }
 
-    console.log("**** Check cart 1 ", cart["0"].price);
+  //   if (customPlan == true) {
+  //     console.log("Custom Plan = true");
+  //   } else {
+  //     console.log("Custom Plan = NOT true");
+  //   }
 
-    // We need to set if custom plan
-    await Promise.all(
-      cart.map(async (packages) => {
-        const validatedPackage = await strapi.services.packages.findOne({
-          id: packages.id,
-        });
+  //   console.log("**** Check cart 1 ", cart["0"].price);
 
-        console.log("Check Price - ", packages.price);
+  //   // We need to set if custom plan
+  //   await Promise.all(
+  //     cart.map(async (packages) => {
+  //       const validatedPackage = await strapi.services.packages.findOne({
+  //         id: packages.id,
+  //       });
 
-        if (!customPlan) {
-          console.log("Not customn Plan ");
+  //       console.log("Check Price - ", packages.price);
 
-          console.log("validatedPackage", validatedPackage);
-          if (validatedPackage) {
-            validatedPackage.lengthOfPackage = packages.lengthOfPackage;
+  //       if (!customPlan) {
+  //         console.log("Not customn Plan ");
 
-            validatedCart.push(validatedPackage);
+  //         console.log("validatedPackage", validatedPackage);
+  //         if (validatedPackage) {
+  //           validatedPackage.lengthOfPackage = packages.lengthOfPackage;
 
-            receiptCart.push({
-              id: packages.id,
-              name: packages.name,
-              price: packages.price,
-              lengthOfPackage: packages.lengthOfPackage,
-              customer: customer,
-              sales_rep_email: sales_rep_email,
-            });
-          }
-        } else {
-          // For not a custom plan
-          console.log("validatedPackage", validatedPackage);
-          // Check first it is validated - then check the price with Codes
+  //           validatedCart.push(validatedPackage);
 
-          if (validatedPackage) {
-            const validatedCustomPage = await strapi.services.codes.findOne({
-              price: packages.price,
-            });
+  //           receiptCart.push({
+  //             id: packages.id,
+  //             name: packages.name,
+  //             price: packages.price,
+  //             lengthOfPackage: packages.lengthOfPackage,
+  //             customer: customer,
+  //             sales_rep_email: sales_rep_email,
+  //           });
+  //         }
+  //       } else {
+  //         // For not a custom plan
+  //         console.log("validatedPackage", validatedPackage);
+  //         // Check first it is validated - then check the price with Codes
 
-            if (validatedCustomPage) {
-              validatedCustomPage.lengthOfPackage = packages.lengthOfPackage;
-              console.log(
-                "customn lengthOfPackage " + packages.lengthOfPackage
-              );
+  //         if (validatedPackage) {
+  //           const validatedCustomPage = await strapi.services.codes.findOne({
+  //             price: packages.price,
+  //           });
 
-              validatedCart.push(validatedCustomPage);
+  //           if (validatedCustomPage) {
+  //             validatedCustomPage.lengthOfPackage = packages.lengthOfPackage;
+  //             console.log(
+  //               "customn lengthOfPackage " + packages.lengthOfPackage
+  //             );
 
-              receiptCart.push({
-                id: packages.id,
-                name: packages.name,
-                price: packages.price,
-                lengthOfPackage: packages.lengthOfPackage,
-                customer: customer,
-                sales_rep_email: sales_rep_email
-              });
-            }
+  //             validatedCart.push(validatedCustomPage);
 
-            return validatedCustomPage;
-          }
+  //             receiptCart.push({
+  //               id: packages.id,
+  //               name: packages.name,
+  //               price: packages.price,
+  //               lengthOfPackage: packages.lengthOfPackage,
+  //               customer: customer,
+  //               sales_rep_email: sales_rep_email
+  //             });
+  //           }
 
-        }
+  //           return validatedCustomPage;
+  //         }
 
-        return validatedPackage;
-      })
-    );
+  //       }
 
-    console.log("validatedCart - ", validatedCart);
+  //       return validatedPackage;
+  //     })
+  //   );
 
-    //Use the data from strapi to calculate the price of each product
-    //Basically calculate the total that way
-    total = strapi.config.functions.cart.cartTotal(validatedCart);
-    console.log("total - ", total);
+  //   console.log("validatedCart - ", validatedCart);
 
-    let customerID = '';
+  //   //Use the data from strapi to calculate the price of each product
+  //   //Basically calculate the total that way
+  //   total = strapi.config.functions.cart.cartTotal(validatedCart);
+  //   console.log("total - ", total);
 
-    const createCustomer = await stripe.customers.create({
-        description: "My First Test Customer (created for API docs)",
-        name: customer,
-        email: customer_email,
-      });
+  //   let customerID = '';
 
-      console.log("Did create customer + ", createCustomer);
+  //   const createCustomer = await stripe.customers.create({
+  //       description: "My First Test Customer (created for API docs)",
+  //       name: customer,
+  //       email: customer_email,
+  //     });
 
-      console.log("Did create customer ID  + ", createCustomer.id);
+  //     console.log("Did create customer + ", createCustomer);
 
-      customerID = createCustomer.id;
+  //     console.log("Did create customer ID  + ", createCustomer.id);
 
-      console.log("Did create customer customerID + ", customerID);
+  //     customerID = createCustomer.id;
 
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: total * 100, // We do this to change satang to proper baht
-        currency: "THB",
-        metadata: { cart: JSON.stringify(receiptCart) },
-        customer: customerID,
-        receipt_email: customer_email,
-      });
+  //     console.log("Did create customer customerID + ", customerID);
 
-      console.log("Created paymentIntent", paymentIntent);
+  //     const paymentIntent = await stripe.paymentIntents.create({
+  //       amount: total * 100, // We do this to change satang to proper baht
+  //       currency: "THB",
+  //       metadata: { cart: JSON.stringify(receiptCart) },
+  //       customer: customerID,
+  //       receipt_email: customer_email,
+  //     });
 
-      return paymentIntent;
+  //     console.log("Created paymentIntent", paymentIntent);
+
+  //     return paymentIntent;
     
-  },
+  // },
+  */
 
   
   setUpOmise: async (ctx) =>  {

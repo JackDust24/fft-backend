@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "memberships",
   "info": {
-    "name": "Membership"
+    "name": "Membership",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -37,15 +38,38 @@
       "type": "boolean",
       "default": false
     },
-    "order": {
-      "model": "order"
-    },
-    "users_permissions_user": {
+    "member": {
       "plugin": "users-permissions",
       "model": "user"
     },
     "reminder_sent": {
       "type": "boolean"
+    },
+    "payment_type": {
+      "type": "enumeration",
+      "enum": [
+        "Free",
+        "QRPaid",
+        "Payment"
+      ]
+    },
+    "price": {
+      "type": "decimal",
+      "default": 0
+    },
+    "code": {
+      "model": "codes"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }

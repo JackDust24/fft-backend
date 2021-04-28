@@ -1767,6 +1767,65 @@
           "hasPaidQRCode": {
             "type": "boolean",
             "default": false
+          },
+          "memberships": {
+            "required": [
+              "id",
+              "membership_role"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "membership_id": {
+                "type": "string"
+              },
+              "created_date": {
+                "type": "string"
+              },
+              "start_date": {
+                "type": "string"
+              },
+              "end_date": {
+                "type": "string"
+              },
+              "live": {
+                "type": "boolean"
+              },
+              "membership_role": {
+                "type": "string"
+              },
+              "expired": {
+                "type": "boolean"
+              },
+              "member": {
+                "type": "string"
+              },
+              "reminder_sent": {
+                "type": "boolean"
+              },
+              "payment_type": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              },
+              "code": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -1858,6 +1917,9 @@
           "hasPaidQRCode": {
             "type": "boolean",
             "default": false
+          },
+          "memberships": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

@@ -108,6 +108,9 @@
     "hasPaidQRCode": {
       "type": "boolean",
       "default": false
+    },
+    "memberships": {
+      "collection": "membership"
     }
   }
 }

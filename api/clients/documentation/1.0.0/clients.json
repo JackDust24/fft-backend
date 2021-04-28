@@ -615,6 +615,9 @@
               "hasPaidQRCode": {
                 "type": "boolean"
               },
+              "memberships": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },

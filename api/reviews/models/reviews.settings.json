@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "name": "Reviews",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "approved",
+        "rejected",
+        "awaiting"
+      ],
+      "default": "awaiting"
+    },
+    "branch": {
+      "model": "branches"
+    },
+    "author": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "reviews"
+    },
+    "posted_date": {
+      "type": "date"
+    },
+    "visited_date": {
+      "type": "date"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "country": {
+      "type": "string"
+    }
+  }
+}

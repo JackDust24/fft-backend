@@ -8,6 +8,93 @@ const { sanitizeEntity } = require("strapi-utils");
 
 module.exports = {
 
+  // This is the handler for creating a comment
+  review: async (ctx) => {
+   
+    const date = new Date();
+     console.log(ctx.state.user);
+
+    ctx.request.body.author = ctx.state.user.id;
+    ctx.request.body.branch = ctx.params.id;
+    ctx.request.body.posted_date = date;
+
+    console.log(ctx.request.body);
+    console.log("Check for the branch");
+
+    console.log("Check for the comment, ", ctx.request.body.content);
+
+      const findBranch = await strapi.services.branches.findOne({
+        id: ctx.request.body.branch,
+      });
+
+      console.log("Check for the branch 2");
+
+
+      if (findBranch) {
+        // console.log("Check findBranch ", findBranch);
+        console.log("Check for the branch 2.1");
+
+        console.log("Check findBranch ", findBranch.client.client_email);
+
+        const client_email = findBranch.client.client_email;
+        const branch_name = findBranch.client_name;
+        const member = ctx.state.user.username;
+        const title = ctx.request.body.title;
+        const content = ctx.request.body.content;
+
+         // The colour we will use.
+         var fftGreen = "rgba(28, 219, 104)";
+
+        try {
+          const send = await strapi.plugins["email"].services.email.send({
+            to: client_email,
+            subject: `An FFThai member left a comment on ${branch_name}`,
+            text: "Hello",
+            html: `<h1 style="color:${fftGreen};">Hello,</h1>
+                  <p></p>
+                  <p>Am writing to inform you member <strong>${member}</strong> added a comment to <strong>${branch_name}</strong>.</p>
+                  <p></p>
+                  <p>Please login to www.ffthai.com/login to access this branch under Accounts>Branches to either Accept or Reject this comment to appear on your page.</p>
+                  <p></p>
+                  <p>The comment from ${member} is:</p>
+                  <p></p>
+                  <pre>${title}</pre>
+                  <pre>${content}</pre>
+                  <p></p>
+                  <p>Thank you again for joining us at Foreigner Friendly Thailand.</p>
+                  <p></p>	
+                  <p>Best regards,</p>
+                  <p></p>
+                  <h5>FFThai Support</h5>
+                  <p></p>
+                  <h2 style="color:${fftGreen};font-size:24px;">With Foreigner Friendly Thailand, everyone gets what they want!</h2>`,
+            //   <img src="https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing"/>`,
+            //   attachments: [
+            //     {
+            //       filename: 'earlybed_88945d7457.jpg',
+            //       path: path.join(
+            //         __dirname + '/../../../public/uploads/earlybed_88945d7457.jpg'
+            //       ),
+            //       cid: 'https://drive.google.com/file/d/1MhXXE2qfP6NIzIJ9CAae42eaqHm0NrOi/view?usp=sharing'
+            //     }
+            //   ]
+          });
+    
+          console.log("send", send);
+        } catch (err) {
+          console.log("Problem with email for branch - ", err);
+        }
+
+      };
+
+      console.log("Check for the branch 3");
+
+
+    let entity = await strapi.services.reviews.create(ctx.request.body);
+ 
+    return sanitizeEntity(entity, { model: strapi.models.reviews });
+  },
+
     create: async (ctx) => {
         const {
            data,

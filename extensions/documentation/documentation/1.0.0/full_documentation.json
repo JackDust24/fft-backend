@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "04/28/2021 10:16:27 AM"
+    "x-generation-date": "05/12/2021 11:21:39 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -554,6 +554,77 @@
             }
           }
         ]
+      }
+    },
+    "/branches/{id}/review": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new branches record",
+        "responses": {
+          "200": {
+            "description": "Retrieve branches document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Branches"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/client-packages": {
@@ -4730,6 +4801,517 @@
         ]
       }
     },
+    "/reviews": {
+      "get": {
+        "deprecated": false,
+        "description": "Find all the reviews's records",
+        "responses": {
+          "200": {
+            "description": "Retrieve reviews document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Reviews"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Reviews"
+        ],
+        "parameters": [
+          {
+            "name": "_limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results possible",
+            "schema": {
+              "type": "integer"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_sort",
+            "in": "query",
+            "required": false,
+            "description": "Sort according to a specific field.",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_start",
+            "in": "query",
+            "required": false,
+            "description": "Skip a specific number of entries (especially useful for pagination)",
+            "schema": {
+              "type": "integer"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "=",
+            "in": "query",
+            "required": false,
+            "description": "Get entries that matches exactly your input",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_ne",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are not equals to something",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_lt",
+            "in": "query",
+            "required": false,
+            "description": "Get record that are lower than a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_lte",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are lower than or equal to a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_gt",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are greater than a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_gte",
+            "in": "query",
+            "required": false,
+            "description": "Get records that are greater than  or equal a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_contains",
+            "in": "query",
+            "required": false,
+            "description": "Get records that contains a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_containss",
+            "in": "query",
+            "required": false,
+            "description": "Get records that contains (case sensitive) a value",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_in",
+            "in": "query",
+            "required": false,
+            "description": "Get records that matches any value in the array of values",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "deprecated": false
+          },
+          {
+            "name": "_nin",
+            "in": "query",
+            "required": false,
+            "description": "Get records that doesn't match any value in the array of values",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "deprecated": false
+          }
+        ]
+      },
+      "post": {
+        "deprecated": false,
+        "description": "Create a new reviews record",
+        "responses": {
+          "200": {
+            "description": "Retrieve reviews document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reviews"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Reviews"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewReviews"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reviews/count": {
+      "get": {
+        "deprecated": false,
+        "description": "Retrieve the numver of reviews documents",
+        "responses": {
+          "200": {
+            "description": "Retrieve reviews document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Reviews"
+        ],
+        "parameters": []
+      }
+    },
+    "/reviews/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "Find one reviews record",
+        "responses": {
+          "200": {
+            "description": "Retrieve reviews document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reviews"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Reviews"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "put": {
+        "deprecated": false,
+        "description": "Update a single reviews record",
+        "responses": {
+          "200": {
+            "description": "Retrieve reviews document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reviews"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Reviews"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewReviews"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "deprecated": false,
+        "description": "Delete a single reviews record",
+        "responses": {
+          "200": {
+            "description": "deletes a single reviews based on the ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Reviews"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/email/": {
       "post": {
         "deprecated": false,
@@ -6847,8 +7429,6 @@
             "required": [
               "id",
               "business_name",
-              "franchise",
-              "client_contact",
               "setup_by"
             ],
             "properties": {
@@ -6863,9 +7443,6 @@
               },
               "InternalID": {
                 "type": "string"
-              },
-              "franchise": {
-                "type": "boolean"
               },
               "client_user": {
                 "type": "string"
@@ -6882,65 +7459,8 @@
               "client_phone_number": {
                 "type": "integer"
               },
-              "address": {
-                "type": "string"
-              },
-              "district": {
-                "type": "string"
-              },
-              "province": {
-                "type": "string"
-              },
-              "about_us": {
-                "type": "string"
-              },
-              "main_image": {
-                "type": "string"
-              },
-              "other_images": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "logo": {
-                "type": "string"
-              },
-              "video_link": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "site_details": {
-                "type": "string"
-              },
-              "opening_times": {
-                "type": "string"
-              },
               "membership_status": {
                 "type": "string"
-              },
-              "website": {
-                "type": "string"
-              },
-              "other_business_links": {
-                "type": "string"
-              },
-              "social_media_fb": {
-                "type": "string"
-              },
-              "social_media_instagram": {
-                "type": "string"
-              },
-              "social_mediaI_twitter": {
-                "type": "string"
-              },
-              "fft_service_marker": {
-                "type": "boolean"
-              },
-              "fft_english_marker": {
-                "type": "boolean"
               },
               "membership_expiry": {
                 "type": "string"
@@ -6973,9 +7493,6 @@
                 "type": "string"
               },
               "setup_by": {
-                "type": "string"
-              },
-              "business_display_name": {
                 "type": "string"
               },
               "business_category": {
@@ -7155,73 +7672,6 @@
           "branch_description_long": {
             "type": "string"
           },
-          "video": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {
-                "type": "object"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "main_image": {
             "required": [
               "id",
@@ -7443,6 +7893,12 @@
               },
               "memberships": {
                 "type": "string"
+              },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -7607,6 +8063,55 @@
               }
             }
           },
+          "reviews": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "branch": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "posted_date": {
+                "type": "string"
+              },
+              "visited_date": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "video_link": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -7726,6 +8231,12 @@
           "branch_number": {
             "type": "string"
           },
+          "reviews": {
+            "type": "string"
+          },
+          "video_link": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -7835,8 +8346,6 @@
             "required": [
               "id",
               "business_name",
-              "franchise",
-              "client_contact",
               "setup_by"
             ],
             "properties": {
@@ -7851,9 +8360,6 @@
               },
               "InternalID": {
                 "type": "string"
-              },
-              "franchise": {
-                "type": "boolean"
               },
               "client_user": {
                 "type": "string"
@@ -7870,65 +8376,8 @@
               "client_phone_number": {
                 "type": "integer"
               },
-              "address": {
-                "type": "string"
-              },
-              "district": {
-                "type": "string"
-              },
-              "province": {
-                "type": "string"
-              },
-              "about_us": {
-                "type": "string"
-              },
-              "main_image": {
-                "type": "string"
-              },
-              "other_images": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "logo": {
-                "type": "string"
-              },
-              "video_link": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "site_details": {
-                "type": "string"
-              },
-              "opening_times": {
-                "type": "string"
-              },
               "membership_status": {
                 "type": "string"
-              },
-              "website": {
-                "type": "string"
-              },
-              "other_business_links": {
-                "type": "string"
-              },
-              "social_media_fb": {
-                "type": "string"
-              },
-              "social_media_instagram": {
-                "type": "string"
-              },
-              "social_mediaI_twitter": {
-                "type": "string"
-              },
-              "fft_service_marker": {
-                "type": "boolean"
-              },
-              "fft_english_marker": {
-                "type": "boolean"
               },
               "membership_expiry": {
                 "type": "string"
@@ -7961,9 +8410,6 @@
                 "type": "string"
               },
               "setup_by": {
-                "type": "string"
-              },
-              "business_display_name": {
                 "type": "string"
               },
               "business_category": {
@@ -8069,8 +8515,6 @@
         "required": [
           "id",
           "business_name",
-          "franchise",
-          "client_contact",
           "setup_by"
         ],
         "properties": {
@@ -8085,10 +8529,6 @@
           },
           "InternalID": {
             "type": "string"
-          },
-          "franchise": {
-            "type": "boolean",
-            "default": false
           },
           "client_user": {
             "required": [
@@ -8169,6 +8609,12 @@
               "memberships": {
                 "type": "string"
               },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -8189,323 +8635,8 @@
           "client_phone_number": {
             "type": "integer"
           },
-          "address": {
-            "type": "string"
-          },
-          "district": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "about_us": {
-            "type": "string"
-          },
-          "main_image": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {
-                "type": "object"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "other_images": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "logo": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {
-                "type": "object"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "video_link": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "site_details": {
-            "type": "string"
-          },
-          "opening_times": {
-            "type": "string"
-          },
           "membership_status": {
             "type": "string"
-          },
-          "website": {
-            "type": "string"
-          },
-          "other_business_links": {
-            "type": "string"
-          },
-          "social_media_fb": {
-            "type": "string"
-          },
-          "social_media_instagram": {
-            "type": "string"
-          },
-          "social_mediaI_twitter": {
-            "type": "string"
-          },
-          "fft_service_marker": {
-            "type": "boolean",
-            "default": true
-          },
-          "fft_english_marker": {
-            "type": "boolean",
-            "default": true
           },
           "membership_expiry": {
             "type": "string",
@@ -8624,9 +8755,6 @@
             "type": "string",
             "default": "unknown"
           },
-          "business_display_name": {
-            "type": "string"
-          },
           "business_category": {
             "type": "string"
           },
@@ -8728,9 +8856,6 @@
                 "branch_description_long": {
                   "type": "string"
                 },
-                "video": {
-                  "type": "string"
-                },
                 "main_image": {
                   "type": "string"
                 },
@@ -8773,6 +8898,12 @@
                 "discount_image": {
                   "type": "string"
                 },
+                "reviews": {
+                  "type": "string"
+                },
+                "video_link": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -8803,8 +8934,6 @@
       "NewClients": {
         "required": [
           "business_name",
-          "franchise",
-          "client_contact",
           "setup_by"
         ],
         "properties": {
@@ -8816,10 +8945,6 @@
           },
           "InternalID": {
             "type": "string"
-          },
-          "franchise": {
-            "type": "boolean",
-            "default": false
           },
           "client_user": {
             "type": "string"
@@ -8836,49 +8961,8 @@
           "client_phone_number": {
             "type": "integer"
           },
-          "address": {
-            "type": "string"
-          },
-          "district": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "about_us": {
-            "type": "string"
-          },
-          "site_details": {
-            "type": "string"
-          },
-          "opening_times": {
-            "type": "string"
-          },
           "membership_status": {
             "type": "string"
-          },
-          "website": {
-            "type": "string"
-          },
-          "other_business_links": {
-            "type": "string"
-          },
-          "social_media_fb": {
-            "type": "string"
-          },
-          "social_media_instagram": {
-            "type": "string"
-          },
-          "social_mediaI_twitter": {
-            "type": "string"
-          },
-          "fft_service_marker": {
-            "type": "boolean",
-            "default": true
-          },
-          "fft_english_marker": {
-            "type": "boolean",
-            "default": true
           },
           "membership_expiry": {
             "type": "string",
@@ -8914,9 +8998,6 @@
           "setup_by": {
             "type": "string",
             "default": "unknown"
-          },
-          "business_display_name": {
-            "type": "string"
           },
           "business_category": {
             "type": "string"
@@ -9344,6 +9425,12 @@
               "memberships": {
                 "type": "string"
               },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -9515,6 +9602,9 @@
               }
             }
           },
+          "country": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -9574,6 +9664,9 @@
             "default": 0
           },
           "code": {
+            "type": "string"
+          },
+          "country": {
             "type": "string"
           },
           "published_at": {
@@ -9750,6 +9843,12 @@
               },
               "memberships": {
                 "type": "string"
+              },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -10232,6 +10331,12 @@
               "memberships": {
                 "type": "string"
               },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -10345,6 +10450,398 @@
           "EndDate": {
             "type": "string",
             "format": "date"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
+            "type": "string"
+          }
+        }
+      },
+      "Reviews": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "default": "awaiting",
+            "enum": [
+              "approved",
+              "rejected",
+              "awaiting"
+            ]
+          },
+          "branch": {
+            "required": [
+              "id",
+              "client_name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "client_name": {
+                "type": "string"
+              },
+              "client": {
+                "type": "string"
+              },
+              "location": {
+                "type": "object"
+              },
+              "Category": {
+                "type": "string"
+              },
+              "Sub_category": {
+                "type": "string"
+              },
+              "Address_line_1": {
+                "type": "string"
+              },
+              "Address_line_2": {
+                "type": "string"
+              },
+              "District": {
+                "type": "string"
+              },
+              "Province": {
+                "type": "string"
+              },
+              "Discount": {
+                "type": "string"
+              },
+              "Discount_alt": {
+                "type": "string"
+              },
+              "English_speaking": {
+                "type": "boolean"
+              },
+              "Fair_pricing": {
+                "type": "boolean"
+              },
+              "Parking": {
+                "type": "boolean"
+              },
+              "Date_created": {
+                "type": "string"
+              },
+              "Date_updated": {
+                "type": "string"
+              },
+              "Opening_times": {
+                "type": "string"
+              },
+              "Branch_contact": {
+                "type": "string"
+              },
+              "Branch_phone": {
+                "type": "string"
+              },
+              "website_url": {
+                "type": "string"
+              },
+              "social_media_fb": {
+                "type": "string"
+              },
+              "social_media_instagram": {
+                "type": "string"
+              },
+              "branch_logo": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "branch_description_small": {
+                "type": "string"
+              },
+              "branch_description_long": {
+                "type": "string"
+              },
+              "main_image": {
+                "type": "string"
+              },
+              "other_images": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "branch_name": {
+                "type": "string"
+              },
+              "family_friendly": {
+                "type": "boolean"
+              },
+              "branch_user": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "uid"
+              },
+              "wifi": {
+                "type": "boolean"
+              },
+              "phone": {
+                "type": "integer"
+              },
+              "discount_info": {
+                "type": "string"
+              },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "branch_number": {
+                "type": "string"
+              },
+              "qr_image": {
+                "type": "string"
+              },
+              "discount_image": {
+                "type": "string"
+              },
+              "reviews": {
+                "type": "string"
+              },
+              "video_link": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "author": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "can_create_business": {
+                "type": "boolean"
+              },
+              "client": {
+                "type": "string"
+              },
+              "client_created": {
+                "type": "string"
+              },
+              "orders": {
+                "type": "string"
+              },
+              "sales_rep_email": {
+                "type": "string"
+              },
+              "package": {
+                "type": "string"
+              },
+              "packages": {
+                "type": "object"
+              },
+              "free_plan": {
+                "type": "boolean"
+              },
+              "language_pref": {
+                "type": "string"
+              },
+              "numberOfBusinesses": {
+                "type": "integer"
+              },
+              "branches": {
+                "type": "string"
+              },
+              "free_months": {
+                "type": "integer"
+              },
+              "hasPaidQRCode": {
+                "type": "boolean"
+              },
+              "memberships": {
+                "type": "string"
+              },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "posted_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "visited_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "avatar": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "country": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "NewReviews": {
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "default": "awaiting",
+            "enum": [
+              "approved",
+              "rejected",
+              "awaiting"
+            ]
+          },
+          "branch": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "posted_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "visited_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "country": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -10499,6 +10996,12 @@
                 "memberships": {
                   "type": "string"
                 },
+                "reviews": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -10620,8 +11123,6 @@
             "required": [
               "id",
               "business_name",
-              "franchise",
-              "client_contact",
               "setup_by"
             ],
             "properties": {
@@ -10636,9 +11137,6 @@
               },
               "InternalID": {
                 "type": "string"
-              },
-              "franchise": {
-                "type": "boolean"
               },
               "client_user": {
                 "type": "string"
@@ -10655,65 +11153,8 @@
               "client_phone_number": {
                 "type": "integer"
               },
-              "address": {
-                "type": "string"
-              },
-              "district": {
-                "type": "string"
-              },
-              "province": {
-                "type": "string"
-              },
-              "about_us": {
-                "type": "string"
-              },
-              "main_image": {
-                "type": "string"
-              },
-              "other_images": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "logo": {
-                "type": "string"
-              },
-              "video_link": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "site_details": {
-                "type": "string"
-              },
-              "opening_times": {
-                "type": "string"
-              },
               "membership_status": {
                 "type": "string"
-              },
-              "website": {
-                "type": "string"
-              },
-              "other_business_links": {
-                "type": "string"
-              },
-              "social_media_fb": {
-                "type": "string"
-              },
-              "social_media_instagram": {
-                "type": "string"
-              },
-              "social_mediaI_twitter": {
-                "type": "string"
-              },
-              "fft_service_marker": {
-                "type": "boolean"
-              },
-              "fft_english_marker": {
-                "type": "boolean"
               },
               "membership_expiry": {
                 "type": "string"
@@ -10746,9 +11187,6 @@
                 "type": "string"
               },
               "setup_by": {
-                "type": "string"
-              },
-              "business_display_name": {
                 "type": "string"
               },
               "business_category": {
@@ -11065,9 +11503,6 @@
               "branch_description_long": {
                 "type": "string"
               },
-              "video": {
-                "type": "string"
-              },
               "main_image": {
                 "type": "string"
               },
@@ -11108,6 +11543,12 @@
                 "type": "string"
               },
               "discount_image": {
+                "type": "string"
+              },
+              "reviews": {
+                "type": "string"
+              },
+              "video_link": {
                 "type": "string"
               },
               "published_at": {
@@ -11177,6 +11618,9 @@
               "avatar": {
                 "type": "string"
               },
+              "country": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -11185,6 +11629,55 @@
               },
               "updated_by": {
                 "type": "string"
+              }
+            }
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "branch": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "posted_date": {
+                  "type": "string"
+                },
+                "visited_date": {
+                  "type": "string"
+                },
+                "avatar": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
               }
             }
           }
@@ -11282,6 +11775,12 @@
           "memberships": {
             "type": "string"
           },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "created_by": {
             "type": "string"
           },
@@ -11338,6 +11837,9 @@
     },
     {
       "name": "Promotions"
+    },
+    {
+      "name": "Reviews"
     },
     {
       "name": "Email - Email"

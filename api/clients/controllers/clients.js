@@ -12,10 +12,8 @@ module.exports = {
   create: async (ctx) => {
     const {
       business_name,
-      business_display_name,
       client_contact,
       client_email,
-      franchise,
       sales_rep,
       sales_rep_email,
       business_category,
@@ -31,7 +29,6 @@ module.exports = {
 
     //Check if the data is proper 2
     console.log("clients.create business_name ", business_name);
-    console.log("clients.create business_display_name ", business_display_name);
     console.log("clients.create client_contact ", client_contact);
     console.log("clients.create client_email ", client_email);
     console.log("clients.create sales_rep ", sales_rep);
@@ -115,15 +112,11 @@ module.exports = {
 
     const entry = {
       business_name,
-      business_display_name,
-      client_contact,
-      client_email,
-      franchise,
-      sales_rep,
       setup_by,
       client_user,
+      client_contact,
       terms,
-      sales_rep_email,
+      contact_business: client_email,
       business_category,
       business_sub_category,
       discount_info,

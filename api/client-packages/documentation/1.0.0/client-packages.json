@@ -624,8 +624,6 @@
             "required": [
               "id",
               "business_name",
-              "franchise",
-              "client_contact",
               "setup_by"
             ],
             "properties": {
@@ -640,9 +638,6 @@
               },
               "InternalID": {
                 "type": "string"
-              },
-              "franchise": {
-                "type": "boolean"
               },
               "client_user": {
                 "type": "string"
@@ -659,65 +654,8 @@
               "client_phone_number": {
                 "type": "integer"
               },
-              "address": {
-                "type": "string"
-              },
-              "district": {
-                "type": "string"
-              },
-              "province": {
-                "type": "string"
-              },
-              "about_us": {
-                "type": "string"
-              },
-              "main_image": {
-                "type": "string"
-              },
-              "other_images": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "logo": {
-                "type": "string"
-              },
-              "video_link": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "site_details": {
-                "type": "string"
-              },
-              "opening_times": {
-                "type": "string"
-              },
               "membership_status": {
                 "type": "string"
-              },
-              "website": {
-                "type": "string"
-              },
-              "other_business_links": {
-                "type": "string"
-              },
-              "social_media_fb": {
-                "type": "string"
-              },
-              "social_media_instagram": {
-                "type": "string"
-              },
-              "social_mediaI_twitter": {
-                "type": "string"
-              },
-              "fft_service_marker": {
-                "type": "boolean"
-              },
-              "fft_english_marker": {
-                "type": "boolean"
               },
               "membership_expiry": {
                 "type": "string"
@@ -750,9 +688,6 @@
                 "type": "string"
               },
               "setup_by": {
-                "type": "string"
-              },
-              "business_display_name": {
                 "type": "string"
               },
               "business_category": {

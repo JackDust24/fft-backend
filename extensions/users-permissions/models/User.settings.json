@@ -111,6 +111,10 @@
     },
     "memberships": {
       "collection": "membership"
+    },
+    "reviews": {
+      "via": "author",
+      "collection": "reviews"
     }
   }
 }

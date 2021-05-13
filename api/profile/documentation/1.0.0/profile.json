@@ -677,6 +677,12 @@
               "memberships": {
                 "type": "string"
               },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },

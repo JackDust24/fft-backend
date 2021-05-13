@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/branches/:id/review",
+      "handler": "branches.review",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

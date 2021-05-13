@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/memberships": {
+    "/reviews": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find all the reviews's records",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Membership"
+                    "$ref": "#/components/schemas/Reviews"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Membership"
+          "Reviews"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new record",
+        "description": "Create a new reviews record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Membership"
+                  "$ref": "#/components/schemas/Reviews"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Membership"
+          "Reviews"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMembership"
+                "$ref": "#/components/schemas/NewReviews"
               }
             }
           }
         }
       }
     },
-    "/memberships/count": {
+    "/reviews/count": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Retrieve the numver of reviews documents",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Membership"
+          "Reviews"
         ],
         "parameters": []
       }
     },
-    "/memberships/{id}": {
+    "/reviews/{id}": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find one reviews record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Membership"
+                  "$ref": "#/components/schemas/Reviews"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Membership"
+          "Reviews"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a record",
+        "description": "Update a single reviews record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Membership"
+                  "$ref": "#/components/schemas/Reviews"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Membership"
+          "Reviews"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewMembership"
+                "$ref": "#/components/schemas/NewReviews"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a record",
+        "description": "Delete a single reviews record",
         "responses": {
           "200": {
-            "description": "deletes a single record based on the ID supplied",
+            "description": "deletes a single reviews based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Membership"
+          "Reviews"
         ],
         "parameters": [
           {
@@ -514,45 +514,176 @@
   },
   "components": {
     "schemas": {
-      "Membership": {
+      "Reviews": {
         "required": [
-          "id",
-          "membership_role"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "membership_id": {
+          "title": {
             "type": "string"
           },
-          "created_date": {
-            "type": "string",
-            "format": "date-time"
+          "content": {
+            "type": "string"
           },
-          "start_date": {
+          "status": {
             "type": "string",
-            "format": "date"
-          },
-          "end_date": {
-            "type": "string",
-            "format": "date"
-          },
-          "live": {
-            "type": "boolean"
-          },
-          "membership_role": {
-            "type": "string",
+            "default": "awaiting",
             "enum": [
-              "client",
-              "member"
+              "approved",
+              "rejected",
+              "awaiting"
             ]
           },
-          "expired": {
-            "type": "boolean",
-            "default": false
+          "branch": {
+            "required": [
+              "id",
+              "client_name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "client_name": {
+                "type": "string"
+              },
+              "client": {
+                "type": "string"
+              },
+              "location": {
+                "type": "object"
+              },
+              "Category": {
+                "type": "string"
+              },
+              "Sub_category": {
+                "type": "string"
+              },
+              "Address_line_1": {
+                "type": "string"
+              },
+              "Address_line_2": {
+                "type": "string"
+              },
+              "District": {
+                "type": "string"
+              },
+              "Province": {
+                "type": "string"
+              },
+              "Discount": {
+                "type": "string"
+              },
+              "Discount_alt": {
+                "type": "string"
+              },
+              "English_speaking": {
+                "type": "boolean"
+              },
+              "Fair_pricing": {
+                "type": "boolean"
+              },
+              "Parking": {
+                "type": "boolean"
+              },
+              "Date_created": {
+                "type": "string"
+              },
+              "Date_updated": {
+                "type": "string"
+              },
+              "Opening_times": {
+                "type": "string"
+              },
+              "Branch_contact": {
+                "type": "string"
+              },
+              "Branch_phone": {
+                "type": "string"
+              },
+              "website_url": {
+                "type": "string"
+              },
+              "social_media_fb": {
+                "type": "string"
+              },
+              "social_media_instagram": {
+                "type": "string"
+              },
+              "branch_logo": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "branch_description_small": {
+                "type": "string"
+              },
+              "branch_description_long": {
+                "type": "string"
+              },
+              "main_image": {
+                "type": "string"
+              },
+              "other_images": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "branch_name": {
+                "type": "string"
+              },
+              "family_friendly": {
+                "type": "boolean"
+              },
+              "branch_user": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "uid"
+              },
+              "wifi": {
+                "type": "boolean"
+              },
+              "phone": {
+                "type": "integer"
+              },
+              "discount_info": {
+                "type": "string"
+              },
+              "premium_membership": {
+                "type": "boolean"
+              },
+              "branch_number": {
+                "type": "string"
+              },
+              "qr_image": {
+                "type": "string"
+              },
+              "discount_image": {
+                "type": "string"
+              },
+              "reviews": {
+                "type": "string"
+              },
+              "video_link": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           },
-          "member": {
+          "author": {
             "required": [
               "id",
               "username",
@@ -645,101 +776,13 @@
               }
             }
           },
-          "reminder_sent": {
-            "type": "boolean"
-          },
-          "payment_type": {
+          "posted_date": {
             "type": "string",
-            "enum": [
-              "Free",
-              "QRPaid",
-              "Payment"
-            ]
+            "format": "date"
           },
-          "price": {
-            "type": "number",
-            "default": 0
-          },
-          "code": {
-            "required": [
-              "id",
-              "name",
-              "price",
-              "lengthOfPackage",
-              "promotions",
-              "code_added_by",
-              "code",
-              "slug",
-              "reason_for_code"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "packageImage": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "price": {
-                "type": "integer"
-              },
-              "vat": {
-                "type": "integer"
-              },
-              "tax": {
-                "type": "integer"
-              },
-              "lengthOfPackage": {
-                "type": "integer"
-              },
-              "promotions": {
-                "type": "integer"
-              },
-              "code_added_by": {
-                "type": "string"
-              },
-              "code_type": {
-                "type": "string"
-              },
-              "code": {
-                "type": "string"
-              },
-              "slug": {
-                "type": "uid"
-              },
-              "amount": {
-                "type": "integer"
-              },
-              "reason_for_code": {
-                "type": "string"
-              },
-              "free_months": {
-                "type": "integer"
-              },
-              "code_live": {
-                "type": "boolean"
-              },
-              "code_valid": {
-                "type": "boolean"
-              },
-              "admin_user": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
+          "visited_date": {
+            "type": "string",
+            "format": "date"
           },
           "avatar": {
             "required": [
@@ -817,60 +860,36 @@
           }
         }
       },
-      "NewMembership": {
-        "required": [
-          "membership_role"
-        ],
+      "NewReviews": {
         "properties": {
-          "membership_id": {
+          "title": {
             "type": "string"
           },
-          "created_date": {
-            "type": "string",
-            "format": "date-time"
+          "content": {
+            "type": "string"
           },
-          "start_date": {
+          "status": {
+            "type": "string",
+            "default": "awaiting",
+            "enum": [
+              "approved",
+              "rejected",
+              "awaiting"
+            ]
+          },
+          "branch": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "posted_date": {
             "type": "string",
             "format": "date"
           },
-          "end_date": {
+          "visited_date": {
             "type": "string",
             "format": "date"
-          },
-          "live": {
-            "type": "boolean"
-          },
-          "membership_role": {
-            "type": "string",
-            "enum": [
-              "client",
-              "member"
-            ]
-          },
-          "expired": {
-            "type": "boolean",
-            "default": false
-          },
-          "member": {
-            "type": "string"
-          },
-          "reminder_sent": {
-            "type": "boolean"
-          },
-          "payment_type": {
-            "type": "string",
-            "enum": [
-              "Free",
-              "QRPaid",
-              "Payment"
-            ]
-          },
-          "price": {
-            "type": "number",
-            "default": 0
-          },
-          "code": {
-            "type": "string"
           },
           "country": {
             "type": "string"
@@ -891,7 +910,7 @@
   },
   "tags": [
     {
-      "name": "Membership"
+      "name": "Reviews"
     }
   ]
 }

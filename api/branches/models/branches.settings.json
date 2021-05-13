@@ -99,17 +99,6 @@
     "branch_description_long": {
       "type": "text"
     },
-    "video": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false
-    },
     "main_image": {
       "model": "file",
       "via": "related",
@@ -185,6 +174,12 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "reviews": {
+      "collection": "reviews"
+    },
+    "video_link": {
+      "type": "string"
     }
   }
 }

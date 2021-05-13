@@ -510,6 +510,77 @@
           }
         ]
       }
+    },
+    "/branches/{id}/review": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new branches record",
+        "responses": {
+          "200": {
+            "description": "Retrieve branches document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Branches"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -530,8 +601,6 @@
             "required": [
               "id",
               "business_name",
-              "franchise",
-              "client_contact",
               "setup_by"
             ],
             "properties": {
@@ -546,9 +615,6 @@
               },
               "InternalID": {
                 "type": "string"
-              },
-              "franchise": {
-                "type": "boolean"
               },
               "client_user": {
                 "type": "string"
@@ -565,65 +631,8 @@
               "client_phone_number": {
                 "type": "integer"
               },
-              "address": {
-                "type": "string"
-              },
-              "district": {
-                "type": "string"
-              },
-              "province": {
-                "type": "string"
-              },
-              "about_us": {
-                "type": "string"
-              },
-              "main_image": {
-                "type": "string"
-              },
-              "other_images": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "logo": {
-                "type": "string"
-              },
-              "video_link": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "site_details": {
-                "type": "string"
-              },
-              "opening_times": {
-                "type": "string"
-              },
               "membership_status": {
                 "type": "string"
-              },
-              "website": {
-                "type": "string"
-              },
-              "other_business_links": {
-                "type": "string"
-              },
-              "social_media_fb": {
-                "type": "string"
-              },
-              "social_media_instagram": {
-                "type": "string"
-              },
-              "social_mediaI_twitter": {
-                "type": "string"
-              },
-              "fft_service_marker": {
-                "type": "boolean"
-              },
-              "fft_english_marker": {
-                "type": "boolean"
               },
               "membership_expiry": {
                 "type": "string"
@@ -656,9 +665,6 @@
                 "type": "string"
               },
               "setup_by": {
-                "type": "string"
-              },
-              "business_display_name": {
                 "type": "string"
               },
               "business_category": {
@@ -837,73 +843,6 @@
           },
           "branch_description_long": {
             "type": "string"
-          },
-          "video": {
-            "required": [
-              "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {
-                "type": "object"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "provider_metadata": {
-                "type": "object"
-              },
-              "related": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
           },
           "main_image": {
             "required": [
@@ -1127,6 +1066,12 @@
               "memberships": {
                 "type": "string"
               },
+              "reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -1290,6 +1235,55 @@
               }
             }
           },
+          "reviews": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "branch": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "posted_date": {
+                "type": "string"
+              },
+              "visited_date": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "video_link": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1407,6 +1401,12 @@
             "default": false
           },
           "branch_number": {
+            "type": "string"
+          },
+          "reviews": {
+            "type": "string"
+          },
+          "video_link": {
             "type": "string"
           },
           "published_at": {

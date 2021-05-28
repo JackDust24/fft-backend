@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "name": "Categories",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "subcategories": {
+      "collection": "subcategories",
+      "via": "categories"
+    },
+    "sort_priority": {
+      "type": "integer",
+      "default": 0
+    },
+    "name": {
+      "type": "string"
+    },
+    "identifier": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "branches": {
+      "via": "categories",
+      "collection": "branches"
+    }
+  }
+}

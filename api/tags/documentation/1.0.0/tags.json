@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/clients": {
+    "/tags": {
       "get": {
         "deprecated": false,
-        "description": "Find all the clients's records",
+        "description": "Find all the tags's records",
         "responses": {
           "200": {
-            "description": "Retrieve clients document(s)",
+            "description": "Retrieve tags document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Clients"
+                    "$ref": "#/components/schemas/Tags"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Clients"
+          "Tags"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new clients record",
+        "description": "Create a new tags record",
         "responses": {
           "200": {
-            "description": "Retrieve clients document(s)",
+            "description": "Retrieve tags document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Clients"
+                  "$ref": "#/components/schemas/Tags"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Clients"
+          "Tags"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewClients"
+                "$ref": "#/components/schemas/NewTags"
               }
             }
           }
         }
       }
     },
-    "/clients/count": {
+    "/tags/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the numver of clients documents",
+        "description": "Retrieve the numver of tags documents",
         "responses": {
           "200": {
-            "description": "Retrieve clients document(s)",
+            "description": "Retrieve tags document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Clients"
+          "Tags"
         ],
         "parameters": []
       }
     },
-    "/clients/{id}": {
+    "/tags/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one clients record",
+        "description": "Find one tags record",
         "responses": {
           "200": {
-            "description": "Retrieve clients document(s)",
+            "description": "Retrieve tags document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Clients"
+                  "$ref": "#/components/schemas/Tags"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Clients"
+          "Tags"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single clients record",
+        "description": "Update a single tags record",
         "responses": {
           "200": {
-            "description": "Retrieve clients document(s)",
+            "description": "Retrieve tags document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Clients"
+                  "$ref": "#/components/schemas/Tags"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Clients"
+          "Tags"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewClients"
+                "$ref": "#/components/schemas/NewTags"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single clients record",
+        "description": "Delete a single tags record",
         "responses": {
           "200": {
-            "description": "deletes a single clients based on the ID supplied",
+            "description": "deletes a single tags based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Clients"
+          "Tags"
         ],
         "parameters": [
           {
@@ -514,260 +514,15 @@
   },
   "components": {
     "schemas": {
-      "Clients": {
+      "Tags": {
         "required": [
-          "id",
-          "business_name",
-          "setup_by"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "business_name": {
-            "type": "string"
-          },
-          "businessID": {
-            "type": "uid"
-          },
-          "InternalID": {
-            "type": "string"
-          },
-          "client_user": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "can_create_business": {
-                "type": "boolean"
-              },
-              "client": {
-                "type": "string"
-              },
-              "client_created": {
-                "type": "string"
-              },
-              "orders": {
-                "type": "string"
-              },
-              "sales_rep_email": {
-                "type": "string"
-              },
-              "package": {
-                "type": "string"
-              },
-              "packages": {
-                "type": "object"
-              },
-              "free_plan": {
-                "type": "boolean"
-              },
-              "language_pref": {
-                "type": "string"
-              },
-              "numberOfBusinesses": {
-                "type": "integer"
-              },
-              "branches": {
-                "type": "string"
-              },
-              "free_months": {
-                "type": "integer"
-              },
-              "hasPaidQRCode": {
-                "type": "boolean"
-              },
-              "memberships": {
-                "type": "string"
-              },
-              "reviews": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "business_description": {
-            "type": "string"
-          },
-          "client_contact": {
-            "type": "string"
-          },
-          "client_email": {
-            "type": "string"
-          },
-          "client_phone_number": {
-            "type": "integer"
-          },
-          "membership_status": {
-            "type": "string"
-          },
-          "membership_expiry": {
-            "type": "string",
-            "format": "date"
-          },
-          "promotions_allowed": {
-            "type": "integer"
-          },
-          "promotions_purchased": {
-            "type": "integer"
-          },
-          "date_joined": {
-            "type": "string"
-          },
-          "contact_business": {
-            "type": "string"
-          },
-          "discount_info": {
-            "type": "string"
-          },
-          "coordinates": {
-            "type": "object"
-          },
-          "sales_rep": {
-            "type": "string"
-          },
-          "orders": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "order_name": {
-                "type": "string"
-              },
-              "price": {
-                "type": "integer"
-              },
-              "payment_intent_id": {
-                "type": "string"
-              },
-              "lengthOfPackage": {
-                "type": "integer"
-              },
-              "amount": {
-                "type": "number"
-              },
-              "free_months": {
-                "type": "integer"
-              },
-              "tax": {
-                "type": "integer"
-              },
-              "vat": {
-                "type": "integer"
-              },
-              "created_date": {
-                "type": "string"
-              },
-              "sales_rep": {
-                "type": "string"
-              },
-              "sales_rep_link": {
-                "type": "string"
-              },
-              "users_permissions_user": {
-                "type": "string"
-              },
-              "payment_type": {
-                "type": "string"
-              },
-              "order_ID": {
-                "type": "uid"
-              },
-              "customplan": {
-                "type": "boolean"
-              },
-              "package_type": {
-                "type": "string"
-              },
-              "business_name": {
-                "type": "string"
-              },
-              "business_username": {
-                "type": "string"
-              },
-              "order_reference": {
-                "type": "string"
-              },
-              "sales_rep_email": {
-                "type": "string"
-              },
-              "user_email": {
-                "type": "string"
-              },
-              "order_type": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "business_type": {
-            "type": "string"
-          },
-          "setup_by": {
-            "type": "string",
-            "default": "unknown"
-          },
-          "business_category": {
-            "type": "string"
-          },
-          "business_sub_category": {
-            "type": "string"
-          },
-          "terms": {
-            "type": "boolean"
-          },
-          "sales_rep_email": {
+          "tag": {
             "type": "string"
           },
           "branches": {
@@ -937,99 +692,15 @@
               }
             }
           },
-          "premium_membership": {
-            "type": "boolean",
-            "default": false
-          },
-          "membership_start": {
-            "type": "string",
-            "format": "date",
-            "default": "2021-06-01T05:00:00.000Z"
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
           }
         }
       },
-      "NewClients": {
-        "required": [
-          "business_name",
-          "setup_by"
-        ],
+      "NewTags": {
         "properties": {
-          "business_name": {
-            "type": "string"
-          },
-          "businessID": {
-            "type": "uid"
-          },
-          "InternalID": {
-            "type": "string"
-          },
-          "client_user": {
-            "type": "string"
-          },
-          "business_description": {
-            "type": "string"
-          },
-          "client_contact": {
-            "type": "string"
-          },
-          "client_email": {
-            "type": "string"
-          },
-          "client_phone_number": {
-            "type": "integer"
-          },
-          "membership_status": {
-            "type": "string"
-          },
-          "membership_expiry": {
-            "type": "string",
-            "format": "date"
-          },
-          "promotions_allowed": {
-            "type": "integer"
-          },
-          "promotions_purchased": {
-            "type": "integer"
-          },
-          "date_joined": {
-            "type": "string"
-          },
-          "contact_business": {
-            "type": "string"
-          },
-          "discount_info": {
-            "type": "string"
-          },
-          "coordinates": {
-            "type": "object"
-          },
-          "sales_rep": {
-            "type": "string"
-          },
-          "orders": {
-            "type": "string"
-          },
-          "business_type": {
-            "type": "string"
-          },
-          "setup_by": {
-            "type": "string",
-            "default": "unknown"
-          },
-          "business_category": {
-            "type": "string"
-          },
-          "business_sub_category": {
-            "type": "string"
-          },
-          "terms": {
-            "type": "boolean"
-          },
-          "sales_rep_email": {
+          "tag": {
             "type": "string"
           },
           "branches": {
@@ -1037,15 +708,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "premium_membership": {
-            "type": "boolean",
-            "default": false
-          },
-          "membership_start": {
-            "type": "string",
-            "format": "date",
-            "default": "2021-06-01T05:00:00.000Z"
           },
           "published_at": {
             "type": "string",
@@ -1063,7 +725,7 @@
   },
   "tags": [
     {
-      "name": "Clients"
+      "name": "Tags"
     }
   ]
 }

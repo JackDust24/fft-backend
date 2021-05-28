@@ -125,7 +125,8 @@ module.exports = {
           html: `<h1 style="color:${fftGreen};">Hello ${userName},</h1>
             <p></p>
             <p><strong>Foreigner Friendly Thailand</strong> can confirm your membership has been activated.</p>
-            <p>You can now claim discounts by clicking on the Claim Discount button under each listing.</p>
+            <p>You can now claim discounts by going to the Search screen in www.ffthai.com/site/search and clicking on a business.</p>
+            <p> From there, click the <strong>Claim Discount</strong> button to show the business.</p>
             <p></p>	
                   <p></p>
                   <h5>FFThai Support</h5>

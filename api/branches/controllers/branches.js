@@ -97,7 +97,7 @@ module.exports = {
 
     create: async (ctx) => {
         const {
-           data,
+           branchData,
            clientId,
            userId,
            username,
@@ -107,13 +107,14 @@ module.exports = {
         } = ctx.request.body
 
         console.log("Backend called = ", ctx.request.body)
-        console.log("Backend called data ", data)
-        console.log("Backend called name ", data.name)
-        console.log("Backend called category ", data.category)
-        console.log("Backend called district ", data.district)
-        console.log("Backend called phone ", data.phone)
-        console.log("Backend called discount ", data.discount)
-        console.log("Backend called businessDiscount ", data.businessDiscount)
+        console.log("Backend called branchData ", branchData)
+        console.log("Backend called name ", branchData.name)
+        console.log("Backend called categories ", branchData.categories)
+        console.log("Backend called subcategories ", branchData.subcategories)
+        console.log("Backend called district ", branchData.district)
+        console.log("Backend called phone ", branchData.phone)
+        console.log("Backend called discount ", branchData.discount)
+        console.log("Backend called businessDiscount ", branchData.businessDiscount)
         console.log("Backend called clientId ", clientId)
         console.log("Backend called userId ", userId)
         console.log("Backend called membership_premium ", membership_premium)
@@ -122,40 +123,44 @@ module.exports = {
 
        console.log(created_date);
 
-        let client_name = data.name; // We will remove this soon and only have branch name.
-        let branch_name = data.name;
-        let Branch_contact = data.email;
-        let branch_number = data.phone;
-        let Category = data.category;
-        let Sub_category = data.subCategory;
-        let Address_line_1 = data.address1;
-        let Address_line_2 = data.address2;
-        let District = data.district;
-        let Province = data.province;
-        let postCode = data.postCode;
-        let location = data.location;
+        let client_name = branchData.name; // We will remove this soon and only have branch name.
+        let branch_name = branchData.name;
+        let Branch_contact = branchData.email;
+        let branch_number = branchData.phone;
+        // let Category = branchData.category;
+        // let Sub_category = branchData.subCategory;
+        let categories = branchData.categories;
+        let subcategories = branchData.subcategories;
+        let Address_line_1 = branchData.address1;
+        let Address_line_2 = branchData.address2;
+        let District = branchData.district;
+        let Province = branchData.province;
+        let postCode = branchData.postCode;
+        let location = branchData.location;
         let Date_created = created_date;
-        let website_url = data.website;
-        let social_media_fb = data.facebook;
-        let social_media_instagram = data.instagram;
-        let branch_description_small = data.smDescription;
-        let branch_description_long = data.lgDescription;
-        let Discount_alt = data.discount;  // This is the discount at branch level
-        let Discount = data.businessDiscount; // This is the discount at business level
+        let website_url = branchData.website;
+        let social_media_fb = branchData.facebook;
+        let social_media_instagram = branchData.instagram;
+        let branch_description_small = branchData.smDescription;
+        let branch_description_long = branchData.lgDescription;
+        let Discount_alt = branchData.discount;  // This is the discount at branch level
+        let Discount = branchData.businessDiscount; // This is the discount at business level
         let client = clientId;
         let branch_user = userId;
         let premium_membership = membership_premium
 
-        console.log("Check called category ", data.category)
-        console.log("Check called district ", data.district)
+        console.log("Check called categories ", branchData.categories)
+        console.log("Check called district ", branchData.district)
 
         const entry = {
             client_name,
             branch_name,
             Branch_contact,
             client,
-            Category,
-            Sub_category,
+            categories,
+            subcategories,
+            // Category,
+            // Sub_category,
             Address_line_1,
             Address_line_2,
             District,
@@ -220,5 +225,10 @@ module.exports = {
 
         const entity = await strapi.services.branches.create(entry);
         return sanitizeEntity(entity, { model: strapi.models.branches })
-    }
+    },
+
+    // async findCategories
+    // (ctx) {
+    //   console.log("Find categories")
+    // }
 };

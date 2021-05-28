@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subcategories",
+  "info": {
+    "name": "Subcategories"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "sub_category": {
+      "type": "string"
+    },
+    "categories": {
+      "via": "subcategories",
+      "collection": "categories",
+      "dominant": true
+    },
+    "branches": {
+      "via": "subcategories",
+      "collection": "branches"
+    }
+  }
+}

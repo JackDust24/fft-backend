@@ -180,6 +180,20 @@
     },
     "video_link": {
       "type": "string"
+    },
+    "categories": {
+      "collection": "categories",
+      "via": "branches",
+      "dominant": true
+    },
+    "subcategories": {
+      "collection": "subcategories",
+      "via": "branches",
+      "dominant": true
+    },
+    "tags": {
+      "via": "branches",
+      "collection": "tags"
     }
   }
 }

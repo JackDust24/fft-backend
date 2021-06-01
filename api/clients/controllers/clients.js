@@ -1,7 +1,7 @@
 "use strict";
 const { sanitizeEntity } = require("strapi-utils");
 
-const launchDate = '2021-06-01T00:00:00.527Z';
+// const launchDate = '2021-06-01T00:00:00.527Z';
 
 /**
  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
@@ -89,24 +89,28 @@ module.exports = {
     // Work out membership start
     let membership_start;
     let passedInDate = Date.parse(startDate);
-    let fftSetDate = Date.parse(launchDate);
-    if (passedInDate > fftSetDate) {
-      membership_start = Date(startDate);
-      console.log("Chosen date is after launch date ", membership_start);
+    // let fftSetDate = Date.parse(launchDate);
+    // if (passedInDate > fftSetDate) {
+    //   membership_start = Date(startDate);
+    //   console.log("Chosen date is after launch date ", membership_start);
  
-    } else {
-      membership_start = new Date(launchDate);
-      console.log("Chosen date is before launch date ", membership_start);
+    // } else {
+    //   membership_start = new Date(launchDate);
+    //   console.log("Chosen date is before launch date ", membership_start);
 
-    }
+    // }
 
     // Work out membership end
     // Work out date
-    let membership_expiry = new Date(membership_start);
+    let membership_expiry = new Date(passedInDate);
+
+
     console.log("Date - ", membership_expiry.toLocaleDateString());
     membership_expiry.setMonth(membership_expiry.getMonth() + lengthOfPackage);
     console.log("New Date - ", membership_expiry.toLocaleDateString());
- 
+    console.log("Membership Start - ", passedInDate);
+    console.log("lengthOfPackage - ", lengthOfPackage);
+
     console.log("Membership Expiry ", membership_expiry);
 
 
@@ -122,7 +126,7 @@ module.exports = {
       discount_info,
       InternalID,
       premium_membership,
-      membership_start,
+      passedInDate,
       membership_expiry
     };
 

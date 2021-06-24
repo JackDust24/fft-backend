@@ -192,8 +192,11 @@
       "dominant": true
     },
     "tags": {
-      "via": "branches",
-      "collection": "tags"
+      "collection": "tags",
+      "via": "branches"
+    },
+    "delivery": {
+      "type": "boolean"
     }
   }
 }

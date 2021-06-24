@@ -16,8 +16,8 @@
       "unique": true
     },
     "branches": {
-      "collection": "branches",
       "via": "tags",
+      "collection": "branches",
       "dominant": true
     }
   }

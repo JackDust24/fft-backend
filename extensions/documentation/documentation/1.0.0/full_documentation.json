@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "06/01/2021 9:24:45 AM"
+    "x-generation-date": "06/24/2021 2:37:06 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -9756,6 +9756,9 @@
               }
             }
           },
+          "delivery": {
+            "type": "boolean"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -9898,6 +9901,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "delivery": {
+            "type": "boolean"
           },
           "published_at": {
             "type": "string",
@@ -10120,6 +10126,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "delivery": {
+                  "type": "boolean"
                 },
                 "published_at": {
                   "type": "string"
@@ -10847,6 +10856,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "delivery": {
+                  "type": "boolean"
                 },
                 "published_at": {
                   "type": "string"
@@ -12583,6 +12595,9 @@
                   "type": "string"
                 }
               },
+              "delivery": {
+                "type": "boolean"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -13026,6 +13041,9 @@
                     "type": "string"
                   }
                 },
+                "delivery": {
+                  "type": "boolean"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -13238,6 +13256,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "delivery": {
+                  "type": "boolean"
                 },
                 "published_at": {
                   "type": "string"
@@ -13993,6 +14014,9 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "delivery": {
+                "type": "boolean"
               },
               "published_at": {
                 "type": "string"

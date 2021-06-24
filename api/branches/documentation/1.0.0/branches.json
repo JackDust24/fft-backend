@@ -1395,6 +1395,9 @@
               }
             }
           },
+          "delivery": {
+            "type": "boolean"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1537,6 +1540,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "delivery": {
+            "type": "boolean"
           },
           "published_at": {
             "type": "string",

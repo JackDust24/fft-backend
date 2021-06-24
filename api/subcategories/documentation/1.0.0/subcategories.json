@@ -723,6 +723,9 @@
                     "type": "string"
                   }
                 },
+                "delivery": {
+                  "type": "boolean"
+                },
                 "published_at": {
                   "type": "string"
                 },

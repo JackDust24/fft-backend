@@ -192,11 +192,14 @@
       "dominant": true
     },
     "tags": {
-      "collection": "tags",
-      "via": "branches"
+      "via": "branches",
+      "collection": "tags"
     },
     "delivery": {
       "type": "boolean"
+    },
+    "sales_rep_email": {
+      "type": "email"
     }
   }
 }

@@ -25,6 +25,7 @@ module.exports = {
       package_type,
       lengthOfPackage,
       startDate,
+      orders,
     } = ctx.request.body;
 
     //Check if the data is proper 2
@@ -40,8 +41,8 @@ module.exports = {
     console.log("clients.create discount_info ", discount_info);
     console.log("clients.create package_type ", package_type);
     console.log("clients.create lengthOfPackage ", discount_info);
-    console.log("clients.create startDate ", discount_info);
-
+    console.log("clients.create startDate ", startDate);
+    console.log("clients.create orders ", orders);
     console.log("clients.create ctx.request.body ", ctx.request.body);
 
     console.log(typeof setup_by);
@@ -87,8 +88,8 @@ module.exports = {
     }
 
     // Work out membership start
-    let membership_start;
-    let passedInDate = Date.parse(startDate);
+    let membership_start = new Date(startDate);
+    let passedInDate = new Date(startDate);
     // let fftSetDate = Date.parse(launchDate);
     // if (passedInDate > fftSetDate) {
     //   membership_start = Date(startDate);
@@ -126,8 +127,11 @@ module.exports = {
       discount_info,
       InternalID,
       premium_membership,
-      passedInDate,
-      membership_expiry
+      membership_start,
+      membership_expiry,
+      sales_rep,
+      sales_rep_email,
+      orders
     };
 
     // Set properties for email
@@ -143,7 +147,7 @@ module.exports = {
       const send = await strapi.plugins["email"].services.email.send({
         to: userEmail,
         cc: sales_rep_email,
-        bcc: "staff@ffthai.com",
+        bcc: "sales@ffthai.com",
         subject: `Hello ${username}!  ${business_name} has been created.`,
         text: "Hello there",
         html: `<h1 style="color:${fftGreen};">Hello ${username},</h1>

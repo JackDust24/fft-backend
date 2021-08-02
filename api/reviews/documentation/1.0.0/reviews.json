@@ -693,6 +693,9 @@
               "delivery": {
                 "type": "boolean"
               },
+              "sales_rep_email": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

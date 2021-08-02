@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "06/24/2021 2:37:06 PM"
+    "x-generation-date": "08/02/2021 2:12:30 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -9744,6 +9744,9 @@
                     "type": "string"
                   }
                 },
+                "slug": {
+                  "type": "uid"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -9758,6 +9761,9 @@
           },
           "delivery": {
             "type": "boolean"
+          },
+          "sales_rep_email": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -9904,6 +9910,9 @@
           },
           "delivery": {
             "type": "boolean"
+          },
+          "sales_rep_email": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -10129,6 +10138,9 @@
                 },
                 "delivery": {
                   "type": "boolean"
+                },
+                "sales_rep_email": {
+                  "type": "string"
                 },
                 "published_at": {
                   "type": "string"
@@ -10859,6 +10871,9 @@
                 },
                 "delivery": {
                   "type": "boolean"
+                },
+                "sales_rep_email": {
+                  "type": "string"
                 },
                 "published_at": {
                   "type": "string"
@@ -12598,6 +12613,9 @@
               "delivery": {
                 "type": "boolean"
               },
+              "sales_rep_email": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -13044,6 +13062,9 @@
                 "delivery": {
                   "type": "boolean"
                 },
+                "sales_rep_email": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -13260,6 +13281,9 @@
                 "delivery": {
                   "type": "boolean"
                 },
+                "sales_rep_email": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -13271,6 +13295,9 @@
                 }
               }
             }
+          },
+          "slug": {
+            "type": "uid"
           },
           "published_at": {
             "type": "string",
@@ -13288,6 +13315,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "slug": {
+            "type": "uid"
           },
           "published_at": {
             "type": "string",
@@ -14017,6 +14047,9 @@
               },
               "delivery": {
                 "type": "boolean"
+              },
+              "sales_rep_email": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"

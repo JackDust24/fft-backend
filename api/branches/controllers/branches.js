@@ -117,6 +117,7 @@ module.exports = {
         console.log("Backend called businessDiscount ", branchData.businessDiscount)
         console.log("Backend called clientId ", clientId)
         console.log("Backend called userId ", userId)
+        console.log("Backend called sales_rep_email ", sales_rep_email)
         console.log("Backend called membership_premium ", membership_premium)
 
        let created_date = new Date();
@@ -178,6 +179,7 @@ module.exports = {
             Discount_alt,
             branch_user,
             premium_membership,
+            sales_rep_email,
         }
 
         console.log("Create entity")
@@ -190,7 +192,7 @@ module.exports = {
           const send = await strapi.plugins["email"].services.email.send({
             to: user_email,
             cc: sales_rep_email,
-            bcc: "staff@ffthai.com",
+            bcc: "sales@ffthai.com",
             subject: `Hello ${username}!  ${branch_name} has been created.`,
             text: "Hello there",
             html: `<h1 style="color:${fftGreen};">Hello ${username},</h1>

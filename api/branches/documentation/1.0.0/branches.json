@@ -1383,6 +1383,9 @@
                     "type": "string"
                   }
                 },
+                "slug": {
+                  "type": "uid"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -1397,6 +1400,9 @@
           },
           "delivery": {
             "type": "boolean"
+          },
+          "sales_rep_email": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -1543,6 +1549,9 @@
           },
           "delivery": {
             "type": "boolean"
+          },
+          "sales_rep_email": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

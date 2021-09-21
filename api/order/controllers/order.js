@@ -1,6 +1,6 @@
 "use strict";
 
-const stripe = require('stripe')(process.env.STRIPE_KEY);
+// const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 const { sanitizeEntity } = require("strapi-utils");
 const path = require("path");
@@ -10,7 +10,7 @@ const omise = require('omise')({
   'omiseVersion': '2015-09-10'
 });
 
-const return_uri2 = `http://localhost:8000/cart/confirmation/`
+// const return_uri2 = `http://localhost:8000/cart/confirmation/`
 
 require(`dotenv`).config()
 

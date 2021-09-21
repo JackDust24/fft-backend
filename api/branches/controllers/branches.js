@@ -34,9 +34,13 @@ module.exports = {
         // console.log("Check findBranch ", findBranch);
         console.log("Check for the branch 2.1");
 
-        console.log("Check findBranch ", findBranch.client.client_email);
+        // console.log("Check findBranch client_email ", findBranch.client.client_email);
+        console.log("Check findBranch contact_business ", findBranch.client.ccontact_business);
+        console.log("Check findBranch findBranch ", findBranch);
+        console.log("Check findBranch findBranch.client ", findBranch.client);
 
-        const client_email = findBranch.client.client_email;
+
+        const client_email = findBranch.client.contact_business;
         const branch_name = findBranch.client_name;
         const member = ctx.state.user.username;
         const title = ctx.request.body.title;

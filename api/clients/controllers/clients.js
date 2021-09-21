@@ -121,6 +121,7 @@ module.exports = {
       client_user,
       client_contact,
       terms,
+      client_email,
       contact_business: client_email,
       business_category,
       business_sub_category,

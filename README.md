@@ -1,3 +1,3 @@
-# Strapi application
+# Startup project - Backend
 
-A quick description of your strapi application
+Strapi and Node customised
